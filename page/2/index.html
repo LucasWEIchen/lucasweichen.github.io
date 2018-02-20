@@ -242,6 +242,194 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/08/14/mips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucas WEI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹿爷的人生杂货铺">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/14/mips/" itemprop="url">汇编语言MIPS的入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T17:28:57+10:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/assembly/" itemprop="url" rel="index">
+                    <span itemprop="name">assembly</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/14/mips/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/14/mips/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#最近一段时间都在忙着带汇编语言的课程。顺道自己也学了一下。</p>
+<p>##Monash University用Mips来介绍汇编语言环境。配合MARS Simulator进行测试。</p>
+<p>##其实隐隐觉得MARS里面有一些BUG， 很多时候程序的过程好像都不是很稳定。</p>
+<ol>
+<li><p>Convention<br>不同的写法和风格对应不同的convention。具体的中文翻译我说不上来，但是指的应该就是你写代码时参照的风格模板。 汇编与高级语言不同，其写法和逻辑自由度很高。 很多时候在不考虑效率的前提下可以衍生出很多方式去完成同一问题。这样会带来很多问题，尤其是别的程序员调用你的代码的时候，对你代码部分内存的调用，返回值的位置等等都不能准确的预判。这就使你编码的模板变得很重要。目测现存的汇编存在众多模板/convention可以使用。但要确认你在同一项目中使用相同的convention。<br>#这是一份我觉得比较好用的Convention的reference sheet</p>
+
+
+	<div class="row">
+    <embed src="/images/mipsref2015.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<p>要注意的是这并不是全部的指令，对于很多版本的convention还有一些高级指令可以调用。这个版本只是更方便于学生理解。</p>
+</li>
+<li><p>Loops<br>在很多高级语言中for 和 while loop都只是一句话的事情。 而在mips中，写代码的人却需要考虑loop的位置，branch的具体跳转位置已经else部分应该放在哪里。这种特性就让while loop更容易在mips中实现，而for loop则变得稍微有些蹩脚。</p>
+</li>
+</ol>
+<p>##对于python 的while loop</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">n = int(input(&quot;Enter integer: &quot;))</span><br><span class="line"></span><br><span class="line">while (n &gt; 1):</span><br><span class="line">print(n)</span><br><span class="line">if n % 2 == 0:</span><br><span class="line">n = n//2</span><br><span class="line">else:</span><br><span class="line">n = 3*n + 1</span><br><span class="line">print(n)</span><br></pre></td></tr></table></figure>
+<p>转换到mips的逻辑大致是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">aLaberCalledLoop</span><br><span class="line">.</span><br><span class="line">beq/bne…aLaberCalledElse</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">j aLaberCalledLoop</span><br><span class="line"></span><br><span class="line">aLaberCalledElse</span><br></pre></td></tr></table></figure></p>
+<p>这里用到3个概念：laber， jump 和 branch。 都不难理解。如有问题请自行翻阅info sheet。<br>另外对于jump，具体来说可以被分为4种：<br><img src="/images/jumpinmips.png" alt="JumpsInMips"><br>上面的例子用的是最简单的一直，其余的几种都与function的调用与返回有关。其实琢磨一下也没有什么，只是对于$pc（program counter）的值进行写入从而操纵下一行代码读取的位置罢了。</p>
+<p>##对于for loop<br>基本的概念是和while loop差不多。这里唯一需要注意的就是else里面statement的写法和在程序中出现的位置。</p>
+<p>python 代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def even_product(a_list):</span><br><span class="line">  product = 1</span><br><span class="line">  for x in a_list:</span><br><span class="line">    if x%2 ==0:</span><br><span class="line">      product=product*x</span><br><span class="line">  return product</span><br></pre></td></tr></table></figure></p>
+<p>当转换到mips时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">.text</span><br><span class="line"></span><br><span class="line">even_product: # save $fp and $ra</span><br><span class="line">addi $sp, $sp, -8</span><br><span class="line">sw $ra, 4($sp)</span><br><span class="line">sw $fp, 0($sp)</span><br><span class="line"></span><br><span class="line"># update $fp</span><br><span class="line">addi $fp, $sp, 0</span><br><span class="line"></span><br><span class="line"># allocate local variables</span><br><span class="line">addi $sp, $sp, -8</span><br><span class="line"></span><br><span class="line"># setup product</span><br><span class="line">li $t0, 1</span><br><span class="line">sw $t0, -4($fp) # save product</span><br><span class="line"></span><br><span class="line"># setup i</span><br><span class="line">li $t0, 0</span><br><span class="line">sw $t0, -8($fp) # save i</span><br><span class="line"></span><br><span class="line">prodloop: lw $t0, -8($fp) # $t0 = i</span><br><span class="line">lw $t1, 8($fp) # $t1 = list</span><br><span class="line">lw $t2, 0($t1) # $t2 = len(list)</span><br><span class="line">bge $t0, $t2, endprod # check if i &lt; len(list)</span><br><span class="line"></span><br><span class="line"># restore x</span><br><span class="line">lw $t0, -8($fp) # $t0 = i</span><br><span class="line"></span><br><span class="line">mul $t3, $t0, 4 # $t3 = 4*i</span><br><span class="line">addi $t3, $t3, 4 # $t3 = 4*i + 4</span><br><span class="line">add $t3, $t3, $t1 # $t3 = address of list[i]</span><br><span class="line">lw $t3, 0($t3) # $t3 = list[i] = x</span><br><span class="line"></span><br><span class="line"># if x % 2 == 0</span><br><span class="line">li $t4, 2</span><br><span class="line">div $t3, $t4</span><br><span class="line">mfhi $t4</span><br><span class="line">bnez $t4, else</span><br><span class="line"></span><br><span class="line"> # product = product*x</span><br><span class="line">lw $t4, -4($fp)</span><br><span class="line">mul $t4, $t4, $t3</span><br><span class="line">sw $t4, -4($fp)</span><br><span class="line"></span><br><span class="line">else: lw $t0, -8($fp)</span><br><span class="line">addi $t0, $t0, 1</span><br><span class="line">sw $t0, -8($fp)</span><br><span class="line"></span><br><span class="line">j prodloop</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">endprod: # set return</span><br><span class="line">lw $v0, -4($fp)</span><br><span class="line"></span><br><span class="line"># deallocate variables</span><br><span class="line">addi $sp, $sp, 8</span><br><span class="line"></span><br><span class="line"># restore $fp and $ra</span><br><span class="line">lw $fp, 0($sp)</span><br><span class="line">lw $ra, 4($sp)</span><br><span class="line">addi $sp, $sp, 8</span><br><span class="line">jr $ra</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的是，很多时候即使for loop中的statement成立，你的代码很可能还是需要执行接下的来的部分，也就是包含else的部分。这种情况下就需要谨慎对待else中的内容。基本上就意味着else中的内容在汇编中并不完全等于在高级语言中的内容。</p>
+<ol>
+<li>stack</li>
+</ol>
+<p>首先，在mips中，内存被从上到下分成5块：<br>——–top———<br>.data<br>——-memory——-<br>.text<br>——-memory——-<br>heap<br>——-memory——-<br>free<br>spaces<br>——-memory——-<br>stack<br>——–bottom——<br>这样不难看出，data+text+heap位于内存的顶部，stack位于底部。而heap和stack中间的区域是未被利用的内存空间。使用这种排列方法的原因很简单：应为在程序初始化的时候data+text的大小是已知的。让heap从上往下生长，而stack从底部反向向上生长，所有的空白内存都留在了两者之间。这既保证了最大效率的利用内存，又不用担心如何分配stack的起始点。<br>而这种分配带来的问题就是stack中内存使用的计算是反向的。每次给一个新的function初始化内存的时候，你都需要把pointer向上反向移动。比如现在pointer在0x2ff04(16进制内存地址，不熟悉的小伙伴小时候肯定没用过金手指)， 你要内一个新的程序初始化一个字段的内存，你需要减去4bits (0x2ff04-4 = 0x2ff00)。0x2ff00则是你新内存指针的位置。</p>
+<ol>
+<li>list<br>mips其实并不提供list这种高级数据格式。对于列表的操作更大程度上依赖于程序员对于stack/heap的理解。</li>
+</ol>
+<p>——–top———<br>0x7FFF3128<br>——-memory——-<br>0x7FFF312C<br>——-memory——-<br>0x7FFF3130<br>——-memory——-<br>0x7FFF3134<br>——-memory——-<br>0x7FFF3138<br>——-bottom——</p>
+<p>比如在如上的内存空间中，如果一开始，你的stack pointer（$sp）在0x7FFF3138的位置，你想写入一个3个单元的list。你需要做的如下：<br> (1)把$sp减去3，向上反向移动3格。新的$sp指向0x7FFF312C<br> (2)把list中的第一个值写入内存空间0x7FFF312C<br> (3)把list中的第二个值写入内存空间0x7FFF3130<br> (4)把list中的第三个值写入内存空间0x7FFF3134<br> 这样你就得到了一个list，占用三个内存空间。需要注意的是mips并不知道这是一个list。作为程序员，在之后的读取中你也要做类似的操作，在记住列表第一个元素的内存地址后，每+4便得到列表下一个值的位置。</p>
+<p> 先写这么多吧，在学习路上，如有错路请见谅并在回复中帮我指出谢谢！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/06/14/encodermore/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -867,167 +1055,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/06/05/rem-pass/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucas WEI">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹿爷的人生杂货铺">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/05/rem-pass/" itemprop="url">让git和HEXO记住你的用户名和密码，反正咱也写不出啥值钱的代码</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-05T23:12:08+10:00">
-                2017-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/05/rem-pass/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/05/rem-pass/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://segmentfault.com/a/1190000005125610" target="_blank" rel="noopener">感谢这位大哥的文章</a><br>看完之后应该就明白了吧。我重述一下：<br>1.打开terminal,使用 ssh-keygen 生成密钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br><span class="line"># Creates a new ssh key using the provided email</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/home/you/.ssh/id_rsa)</span><br></pre></td></tr></table></figure></p>
-<p>使用默认的文件名直接enter，接下来显示如下</p>
-<p>Enter passphrase (empty for no passphrase): [Type a passphrase]<br>Enter same passphrase again: [Type passphrase again]<br>按提示输入密码即可（简化流程的话在键入命令 ssh-keygen -t rsa -C “<a href="mailto:your_email@example.com" target="_blank" rel="noopener">your_email@example.com</a>“ 以后的三次提示输入都可以直接回车跳过）。<br>密钥生成成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Your identification has been saved in /home/you/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved in /home/you/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">…………………此处是密钥内容…………………… your_email@example.com</span><br></pre></td></tr></table></figure></p>
-<p>2.可以选择是在用户设置中添加密钥（Settings –&gt; SSH GPG keys）还是单个项目中添加密钥，在这里我就在我们的博客项目中添加密钥，此处以我的博客为例。<br>在 chengjianhua.github.io 的首页菜单栏中点击 Settings –&gt; Deploy keys –&gt; Add deploy key，然后将生成的 id_rsa.pub 中的内容全选复制到 key 输入框中，然后点击 Add key 完成添加公钥。</p>
-<p>接下来测试配置是否成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
-<p>如果出现以下内容即表示配置完成并且成功！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hi username! You&apos;ve successfully authenticated, but GitHub does not</span><br><span class="line">provide shell access.</span><br></pre></td></tr></table></figure></p>
-<p>这是大哥说的，我测试了，没反应，不知道是不是被屏蔽了，不然我们这些屌丝乱ssh，anyway反正也不影响使用。<br>3.<br>这时我想到了 hexo 的配置文件 _config.yml 中的 deploy 属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:chengjianhua/chengjianhua.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
-<p>我将其中的 repo修改成了<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:chengjianhua/chengjianhua.github.io.git，这个时候我再尝试了 $ hexo deploy 果然成功了，就不用输入密码了！</p>
-<p>#亲测有效，希望能帮到使用HEXO的同学们</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1082,7 +1109,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
@@ -1104,7 +1131,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">Tags</span>
                 
               </div>
