@@ -242,6 +242,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/06/06/minorfix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucas WEI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹿爷的人生杂货铺">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/06/minorfix/" itemprop="url">hexo 使用 material-flow 主题时更正个人描述部分内容的显示错误问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-06T20:25:00+10:00">
+                2017-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/06/minorfix/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/06/minorfix/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="意外发现一个小BUG，使用Hexo-Material-Flow-主题的用户如果想要更改自己的用户简介请编辑主题文件夹中-themes-material-flow-layout-widget-about-ejs-中的第七行改成："><a href="#意外发现一个小BUG，使用Hexo-Material-Flow-主题的用户如果想要更改自己的用户简介请编辑主题文件夹中-themes-material-flow-layout-widget-about-ejs-中的第七行改成：" class="headerlink" title="意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成："></a>意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&apos;desc&apos;&gt;&lt;%=config.description %&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>全文件如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&apos;m_widget about&apos;&gt;</span><br><span class="line">&lt;% if(config.avatar) &#123; %&gt;</span><br><span class="line">&lt;img class=&apos;avatar waves-image&apos; src=&apos;&lt;%= url_for(config.avatar) %&gt;&apos; /&gt;</span><br><span class="line">&lt;%&#125; %&gt;</span><br><span class="line">&lt;div class=&apos;header&apos;&gt;&lt;%=config.author %&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&apos;content&apos;&gt;</span><br><span class="line">&lt;div class=&apos;desc&apos;&gt;&lt;%=config.description %&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure></p>
+<p>否则个人简介永远都是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tempora mutantur, nos et mutamur in illis ...</span><br></pre></td></tr></table></figure></p>
+<p>不知道我是不是领会错了，那位做主题的大神是不是意在强行推广什么时过境迁唯我独尊的金句~<br>但是改改也没啥不好哈。。。。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/06/05/rem-pass/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -904,7 +1060,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>

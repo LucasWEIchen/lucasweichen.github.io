@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="ROS,Raspberry Pi,Arduino," />
+  <meta name="keywords" content="ROS,IMU,GY-85," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="#花了两天时间研究如何在RaspberryPi1 Model B 上面部署ROS系统。 现在简单的总结一下遇到的问题：  似乎Raspi1 model b+ 因为型号太老，只能承受 RoS indigo这个较老的版本。安装过程基本可以按照 Ros WIKI上面的文件  安装过程很久，makefile随随便便就是五六个小时。请准备好电影零食。  如果要连接Arduino，你会发现安装之后的indig">
-<meta name="keywords" content="ROS,Raspberry Pi,Arduino">
+<meta name="description" content="#上一篇讲了GY-85在ROS里面的读取，这里补上该PROJECT文件中的CMakelist.txt 和 package.xml 不一定完全正确，但是有编译需要的所以lib/ The pervious post is talking about the content of node c++ file. Here are the CMakelist.txt and package.xml file">
+<meta name="keywords" content="ROS,IMU,GY-85">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多个树莓派ROS设备在局域网内的安装与设置">
-<meta property="og:url" content="https://lucasweichen.github.io/2017/08/17/ROSonMuiltiRaspi/index.html">
+<meta property="og:title" content="在ROS中使用树莓派读取GY-85 2 IMU read_GY-85_from_ROS_via_RarpberryPi 2">
+<meta property="og:url" content="https://lucasweichen.github.io/2018/02/23/GY-85cont/index.html">
 <meta property="og:site_name" content="鹿爷的人生杂货铺">
-<meta property="og:description" content="#花了两天时间研究如何在RaspberryPi1 Model B 上面部署ROS系统。 现在简单的总结一下遇到的问题：  似乎Raspi1 model b+ 因为型号太老，只能承受 RoS indigo这个较老的版本。安装过程基本可以按照 Ros WIKI上面的文件  安装过程很久，makefile随随便便就是五六个小时。请准备好电影零食。  如果要连接Arduino，你会发现安装之后的indig">
+<meta property="og:description" content="#上一篇讲了GY-85在ROS里面的读取，这里补上该PROJECT文件中的CMakelist.txt 和 package.xml 不一定完全正确，但是有编译需要的所以lib/ The pervious post is talking about the content of node c++ file. Here are the CMakelist.txt and package.xml file">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-18T06:26:34.000Z">
+<meta property="og:updated_time" content="2018-02-23T00:40:11.576Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多个树莓派ROS设备在局域网内的安装与设置">
-<meta name="twitter:description" content="#花了两天时间研究如何在RaspberryPi1 Model B 上面部署ROS系统。 现在简单的总结一下遇到的问题：  似乎Raspi1 model b+ 因为型号太老，只能承受 RoS indigo这个较老的版本。安装过程基本可以按照 Ros WIKI上面的文件  安装过程很久，makefile随随便便就是五六个小时。请准备好电影零食。  如果要连接Arduino，你会发现安装之后的indig">
+<meta name="twitter:title" content="在ROS中使用树莓派读取GY-85 2 IMU read_GY-85_from_ROS_via_RarpberryPi 2">
+<meta name="twitter:description" content="#上一篇讲了GY-85在ROS里面的读取，这里补上该PROJECT文件中的CMakelist.txt 和 package.xml 不一定完全正确，但是有编译需要的所以lib/ The pervious post is talking about the content of node c++ file. Here are the CMakelist.txt and package.xml file">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://lucasweichen.github.io/2017/08/17/ROSonMuiltiRaspi/"/>
+  <link rel="canonical" href="https://lucasweichen.github.io/2018/02/23/GY-85cont/"/>
 
 
 
 
 
-  <title>多个树莓派ROS设备在局域网内的安装与设置 | 鹿爷的人生杂货铺</title>
+  <title>在ROS中使用树莓派读取GY-85 2 IMU read_GY-85_from_ROS_via_RarpberryPi 2 | 鹿爷的人生杂货铺</title>
   
 
 
@@ -243,7 +243,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/08/17/ROSonMuiltiRaspi/">
+    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2018/02/23/GY-85cont/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lucas WEI">
@@ -260,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">多个树莓派ROS设备在局域网内的安装与设置</h1>
+          <h1 class="post-title" itemprop="name headline">在ROS中使用树莓派读取GY-85 2 IMU read_GY-85_from_ROS_via_RarpberryPi 2</h1>
         
 
         <div class="post-meta">
@@ -272,8 +272,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-17T22:58:04+10:00">
-                2017-08-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-23T09:36:32+11:00">
+                2018-02-23
               </time>
             
 
@@ -283,28 +283,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROS/" itemprop="url" rel="index">
-                    <span itemprop="name">ROS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -313,9 +291,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/17/ROSonMuiltiRaspi/#comments" itemprop="discussionUrl">
+                <a href="/2018/02/23/GY-85cont/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/17/ROSonMuiltiRaspi/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/02/23/GY-85cont/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -343,25 +321,10 @@
       
 
       
-        <p>#花了两天时间研究如何在RaspberryPi1 Model B 上面部署ROS系统。 现在简单的总结一下遇到的问题：</p>
+        <p>#上一篇讲了GY-85在ROS里面的读取，这里补上该PROJECT文件中的CMakelist.txt 和 package.xml 不一定完全正确，但是有编译需要的所以lib/ The pervious post is talking about the content of node c++ file. Here are the CMakelist.txt and package.xml file that related in the parent folder. These may not fully correct, but it give the catkin what needs for build.</p>
+<p>1.package.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;package format=&quot;2&quot;&gt;</span><br><span class="line">  &lt;name&gt;imu2core&lt;/name&gt;</span><br><span class="line">  &lt;version&gt;0.0.0&lt;/version&gt;</span><br><span class="line">  &lt;description&gt;The imu2core package&lt;/description&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- One maintainer tag required, multiple allowed, one person per tag --&gt;</span><br><span class="line">  &lt;!-- Example:  --&gt;</span><br><span class="line">  &lt;!-- &lt;maintainer email=&quot;jane.doe@example.com&quot;&gt;Jane Doe&lt;/maintainer&gt; --&gt;</span><br><span class="line">  &lt;maintainer email=&quot;rikirobot@todo.todo&quot;&gt;rikirobot&lt;/maintainer&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &lt;!-- One license tag required, multiple allowed, one license per tag --&gt;</span><br><span class="line">  &lt;!-- Commonly used license strings: --&gt;</span><br><span class="line">  &lt;!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 --&gt;</span><br><span class="line">  &lt;license&gt;BSD&lt;/license&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt;</span><br><span class="line">  &lt;build_depend&gt;tf&lt;/build_depend&gt;</span><br><span class="line">  &lt;build_depend&gt;roscpp&lt;/build_depend&gt;</span><br><span class="line">  &lt;build_depend&gt;rospy&lt;/build_depend&gt;</span><br><span class="line">  &lt;build_export_depend&gt;tf&lt;/build_export_depend&gt;</span><br><span class="line">  &lt;build_export_depend&gt;roscpp&lt;/build_export_depend&gt;</span><br><span class="line">  &lt;build_export_depend&gt;rospy&lt;/build_export_depend&gt;</span><br><span class="line">  &lt;exec_depend&gt;roscpp&lt;/exec_depend&gt;</span><br><span class="line">  &lt;exec_depend&gt;rospy&lt;/exec_depend&gt;</span><br><span class="line">  &lt;exec_depend&gt;tf&lt;/exec_depend&gt;</span><br><span class="line">  &lt;build_depend&gt;wiringPi&lt;/build_depend&gt;</span><br><span class="line">  &lt;build_export_depend&gt;wiringPi&lt;/build_export_depend&gt;</span><br><span class="line">  &lt;exec_depend&gt;wiringPi&lt;/exec_depend&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &lt;!-- The export tag contains other, unspecified, tags --&gt;</span><br><span class="line">  &lt;export&gt;</span><br><span class="line">    &lt;!-- Other tools can request additional information be placed here --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/export&gt;</span><br><span class="line">&lt;/package&gt;</span><br></pre></td></tr></table></figure></p>
 <ol>
-<li><p>似乎Raspi1 model b+ 因为型号太老，只能承受 RoS indigo这个较老的版本。安装过程基本可以按照 <a href="http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Indigo%20on%20Raspberry%20Pi" target="_blank" rel="noopener">Ros WIKI上面的文件</a></p>
-</li>
-<li><p>安装过程很久，makefile随随便便就是五六个小时。请准备好电影零食。</p>
-</li>
-<li><p>如果要连接Arduino，你会发现安装之后的indigo不带ROS的 rosserial package。这需要去单独下载。应为这个包还没有被包含在源服务器上，只能去git上面单独下载。 尽量在第一次make之前就把需要手动安装的package都下载到src文件夹下，这样可以省去你后面反复make的烦恼。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/ros_catkin_ws/src</span><br><span class="line">$ git clone https:// github.com/ros-drivers/rosserial</span><br><span class="line">#下面这两句会重新make一遍，又要去准备电影和零食。</span><br><span class="line">$ cd ~/ros_catkin_ws</span><br><span class="line">$ catkin_make</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>除了 rosserial， 我还用到了一个叫做common_msgs的包。地址是：<a href="https://github.com/ros/common_msgs" target="_blank" rel="noopener">https://github.com/ros/common_msgs</a><br>安装原理与rosserial相同。</p>
-<ol>
-<li><p>arduino 在树莓派1上没有被识别成ttyUSB设备。它指向ttyACM0。如果需要用ROS监听请设置好设备端口。在ROS环境下就是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun rosserial_python serial_node.py /dev/ttyACM0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>当在局域网内使用多个ROS设备时，需要设置一个master来运行roscore. 请参考<a href="http://wiki.ros.org/ROS/Tutorials/MultipleMachines" target="_blank" rel="noopener">这个</a>文档来设置。具体代码我放在这里备忘一下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#在所有子设备上都要设置</span><br><span class="line">export ROS_MASTER_URI=http://192.168.32.101:11311</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Everything else just follow <a href="http://wiki.ros.org/rosserial_arduino/Tutorials" target="_blank" rel="noopener">this</a>.</p>
+<li>CMakelist.txt<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 2.8.3)</span><br><span class="line">project(imu2core)</span><br><span class="line"></span><br><span class="line">## Find catkin and any catkin packages</span><br><span class="line">find_package(catkin REQUIRED COMPONENTS</span><br><span class="line">  roscpp</span><br><span class="line">  rosconsole</span><br><span class="line">  tf</span><br><span class="line">)</span><br><span class="line">catkin_package()</span><br><span class="line"></span><br><span class="line">include_directories(</span><br><span class="line">  $&#123;catkin_INCLUDE_DIRS&#125;</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line">FIND_LIBRARY(WIRINGPI_LIBRARY wiringPi /home/rikirobot/wiringPi)</span><br><span class="line"></span><br><span class="line">add_executable(state_publisher src/state_publisher.cpp)</span><br><span class="line">target_link_libraries(state_publisher $&#123;catkin_LIBRARIES&#125; $&#123;WIRINGPI_LIBRARY&#125; $&#123;wiringPi&#125;)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -383,9 +346,9 @@
           
             <a href="/tags/ROS/" rel="tag"># ROS</a>
           
-            <a href="/tags/Raspberry-Pi/" rel="tag"># Raspberry Pi</a>
+            <a href="/tags/IMU/" rel="tag"># IMU</a>
           
-            <a href="/tags/Arduino/" rel="tag"># Arduino</a>
+            <a href="/tags/GY-85/" rel="tag"># GY-85</a>
           
         </div>
       
@@ -398,8 +361,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/14/mips/" rel="next" title="汇编语言MIPS的入门">
-                <i class="fa fa-chevron-left"></i> 汇编语言MIPS的入门
+              <a href="/2018/02/21/read-GY-85-from-ROS-via-RarpberryPi/" rel="next" title="在ROS中使用树莓派读取GY-85 IMU read_GY-85_from_ROS_via_RarpberryPi">
+                <i class="fa fa-chevron-left"></i> 在ROS中使用树莓派读取GY-85 IMU read_GY-85_from_ROS_via_RarpberryPi
               </a>
             
           </div>
@@ -407,10 +370,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/05/OpenCVimutilsNoneTypeError/" rel="prev" title="OpenCVimutilsNoneTypeError">
-                OpenCVimutilsNoneTypeError <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -692,9 +651,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://lucasweichen.github.io/2017/08/17/ROSonMuiltiRaspi/';
-          this.page.identifier = '2017/08/17/ROSonMuiltiRaspi/';
-          this.page.title = '多个树莓派ROS设备在局域网内的安装与设置';
+          this.page.url = 'https://lucasweichen.github.io/2018/02/23/GY-85cont/';
+          this.page.identifier = '2018/02/23/GY-85cont/';
+          this.page.title = '在ROS中使用树莓派读取GY-85 2 IMU read_GY-85_from_ROS_via_RarpberryPi 2';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-lucasweichen-github-io-1.disqus.com/embed.js';

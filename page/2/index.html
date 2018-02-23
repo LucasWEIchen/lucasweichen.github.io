@@ -242,6 +242,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/08/17/ROSonMuiltiRaspi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucas WEI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹿爷的人生杂货铺">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/17/ROSonMuiltiRaspi/" itemprop="url">多个树莓派ROS设备在局域网内的安装与设置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-17T22:58:04+10:00">
+                2017-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ROS/" itemprop="url" rel="index">
+                    <span itemprop="name">ROS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/17/ROSonMuiltiRaspi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/17/ROSonMuiltiRaspi/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#花了两天时间研究如何在RaspberryPi1 Model B 上面部署ROS系统。 现在简单的总结一下遇到的问题：</p>
+<ol>
+<li><p>似乎Raspi1 model b+ 因为型号太老，只能承受 RoS indigo这个较老的版本。安装过程基本可以按照 <a href="http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Indigo%20on%20Raspberry%20Pi" target="_blank" rel="noopener">Ros WIKI上面的文件</a></p>
+</li>
+<li><p>安装过程很久，makefile随随便便就是五六个小时。请准备好电影零食。</p>
+</li>
+<li><p>如果要连接Arduino，你会发现安装之后的indigo不带ROS的 rosserial package。这需要去单独下载。应为这个包还没有被包含在源服务器上，只能去git上面单独下载。 尽量在第一次make之前就把需要手动安装的package都下载到src文件夹下，这样可以省去你后面反复make的烦恼。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/ros_catkin_ws/src</span><br><span class="line">$ git clone https:// github.com/ros-drivers/rosserial</span><br><span class="line">#下面这两句会重新make一遍，又要去准备电影和零食。</span><br><span class="line">$ cd ~/ros_catkin_ws</span><br><span class="line">$ catkin_make</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>除了 rosserial， 我还用到了一个叫做common_msgs的包。地址是：<a href="https://github.com/ros/common_msgs" target="_blank" rel="noopener">https://github.com/ros/common_msgs</a><br>安装原理与rosserial相同。</p>
+<ol>
+<li><p>arduino 在树莓派1上没有被识别成ttyUSB设备。它指向ttyACM0。如果需要用ROS监听请设置好设备端口。在ROS环境下就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun rosserial_python serial_node.py /dev/ttyACM0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当在局域网内使用多个ROS设备时，需要设置一个master来运行roscore. 请参考<a href="http://wiki.ros.org/ROS/Tutorials/MultipleMachines" target="_blank" rel="noopener">这个</a>文档来设置。具体代码我放在这里备忘一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#在所有子设备上都要设置</span><br><span class="line">export ROS_MASTER_URI=http://192.168.32.101:11311</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Everything else just follow <a href="http://wiki.ros.org/rosserial_arduino/Tutorials" target="_blank" rel="noopener">this</a>.</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/08/14/mips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -899,162 +1072,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/06/06/minorfix/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucas WEI">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹿爷的人生杂货铺">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/06/minorfix/" itemprop="url">hexo 使用 material-flow 主题时更正个人描述部分内容的显示错误问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-06T20:25:00+10:00">
-                2017-06-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/06/minorfix/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/06/minorfix/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="意外发现一个小BUG，使用Hexo-Material-Flow-主题的用户如果想要更改自己的用户简介请编辑主题文件夹中-themes-material-flow-layout-widget-about-ejs-中的第七行改成："><a href="#意外发现一个小BUG，使用Hexo-Material-Flow-主题的用户如果想要更改自己的用户简介请编辑主题文件夹中-themes-material-flow-layout-widget-about-ejs-中的第七行改成：" class="headerlink" title="意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成："></a>意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&apos;desc&apos;&gt;&lt;%=config.description %&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>全文件如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&apos;m_widget about&apos;&gt;</span><br><span class="line">&lt;% if(config.avatar) &#123; %&gt;</span><br><span class="line">&lt;img class=&apos;avatar waves-image&apos; src=&apos;&lt;%= url_for(config.avatar) %&gt;&apos; /&gt;</span><br><span class="line">&lt;%&#125; %&gt;</span><br><span class="line">&lt;div class=&apos;header&apos;&gt;&lt;%=config.author %&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&apos;content&apos;&gt;</span><br><span class="line">&lt;div class=&apos;desc&apos;&gt;&lt;%=config.description %&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure></p>
-<p>否则个人简介永远都是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tempora mutantur, nos et mutamur in illis ...</span><br></pre></td></tr></table></figure></p>
-<p>不知道我是不是领会错了，那位做主题的大神是不是意在强行推广什么时过境迁唯我独尊的金句~<br>但是改改也没啥不好哈。。。。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1109,7 +1126,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
