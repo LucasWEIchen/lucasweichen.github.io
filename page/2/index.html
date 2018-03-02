@@ -194,7 +194,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -204,7 +204,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -228,6 +228,162 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/09/05/OpenCVimutilsNoneTypeError/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lucas WEI">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹿爷的人生杂货铺">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/05/OpenCVimutilsNoneTypeError/" itemprop="url">OpenCVimutilsNoneTypeError</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-05T19:38:41+10:00">
+                2017-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenCV/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenCV</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/05/OpenCVimutilsNoneTypeError/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/05/OpenCVimutilsNoneTypeError/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;camlock/camlock2.py&quot;, line 76, in &lt;module&gt;</span><br><span class="line">    frame = imutils.resize(frame, width=640, height= 480)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/imutils/convenience.py&quot;, line 69, in resize</span><br><span class="line">    (h, w) = image.shape[:2]</span><br><span class="line">AttributeError: &apos;NoneType&apos; object has no attribute &apos;shape&apos;</span><br></pre></td></tr></table></figure>
+<p>早上突然出现了这个错误。网上搜了很多都说是视频的源路径出错导致传给了imutils空的路径。可是测试树莓派摄像头时却一切正常。<br>突然想起昨晚装的 v4l-2 驱动好像没加载。测试之后果然修复了NoneTypeError.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe bcm2835-v4l2</span><br></pre></td></tr></table></figure>
+<p>It could be the path problem, but in my case it is the v4l2 thing that makes the trouble.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -271,7 +427,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-17T22:58:04+10:00">
                 2017-08-17
@@ -292,7 +448,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -444,7 +600,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T17:28:57+10:00">
                 2017-08-14
@@ -465,7 +621,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -632,7 +788,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-14T17:44:02+10:00">
                 2017-06-14
@@ -653,7 +809,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -788,7 +944,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T20:03:20+10:00">
                 2017-06-13
@@ -809,7 +965,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -904,179 +1060,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/06/07/day1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucas WEI">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹿爷的人生杂货铺">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/07/day1/" itemprop="url">新的开始 day1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-07T10:12:44+10:00">
-                2017-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SLAM/" itemprop="url" rel="index">
-                    <span itemprop="name">SLAM</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/07/day1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/07/day1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="I-spend-all-my-bachelor-amp-master-time-to-learn-to-code-and-study-machine-vision-stuff-Now-as-a-Phd-candidate-my-career-changed-to-SLAM-robotics-which-is-quite-exciting-I-finally-jumped-out-of-the-boundary-of-coding-and-started-to-do-some-real-welding-and-soldering-It-is-not-easy-btw-for-me-a-computer-since-student-to-pick-all-these-EE-knowledge-But-its-lot-of-fun-and-getting-paid-I-would-say-fair-enough"><a href="#I-spend-all-my-bachelor-amp-master-time-to-learn-to-code-and-study-machine-vision-stuff-Now-as-a-Phd-candidate-my-career-changed-to-SLAM-robotics-which-is-quite-exciting-I-finally-jumped-out-of-the-boundary-of-coding-and-started-to-do-some-real-welding-and-soldering-It-is-not-easy-btw-for-me-a-computer-since-student-to-pick-all-these-EE-knowledge-But-its-lot-of-fun-and-getting-paid-I-would-say-fair-enough" class="headerlink" title="I spend all my bachelor &amp; master time to learn to code and study machine vision stuff. Now, as a Phd candidate, my career changed to SLAM robotics, which is quite exciting. I finally jumped out of the boundary of coding and started to do some real welding and soldering. It is not easy, btw, for me, a computer since student to pick all these EE knowledge. But its lot of fun and getting paid. I would say fair enough"></a>I spend all my bachelor &amp; master time to learn to code and study machine vision stuff. Now, as a Phd candidate, my career changed to SLAM robotics, which is quite exciting. I finally jumped out of the boundary of coding and started to do some real welding and soldering. It is not easy, btw, for me, a computer since student to pick all these EE knowledge. But its lot of fun and getting paid. I would say fair enough</h1><p>这几天开始看slam小车的构造，从硬件的角度。<br>以前从未接触过硬件这边，最多只玩过树莓派。</p>
-<p>感觉从硬件上说，一个小车/机器人由底盘和各种传感器再加上一个ROS组成。<br>传感器与ROS都比较好理解。对我而言，反而车的底盘成了最神秘的部分。经过一天的阅读，我对底盘的理解有以下几个部分构成：</p>
-<ol>
-<li>电机 motor</li>
-<li>编码器 encoder</li>
-<li>驱动板</li>
-<li>上层控制电脑 这里可以是树莓派之类，也可以是笔记本电脑之类</li>
-<li>电源与电源控制板</li>
-</ol>
-<p>在阅读中已经学习了PWM（Pulse Width Modulatio）的使用，并在树莓派上测试了一段模拟脉冲宽度调制的python代码，如下：<br><a href="https://www.arduino.cc/en/Tutorial/PWM" target="_blank" rel="noopener">arduino 关于pwm的介绍</a></p>
-<p><img src="/images/pwm.png" alt="Sample Image Added via Markdown"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"></span><br><span class="line">import RPI.GPIO as GPIO</span><br><span class="line">import time</span><br><span class="line">import signal</span><br><span class="line">import atexit</span><br><span class="line"></span><br><span class="line">atexit.register(GPIO.cleanup)</span><br><span class="line"></span><br><span class="line">servopin=21</span><br><span class="line">GPIO.setmode(GPIO.BCM)</span><br><span class="line">GPIO.setup(servopin,GPIO.OUT,initial=False)</span><br><span class="line">p=GPIO.PWM(servopin,50)</span><br><span class="line">p.start(0)</span><br><span class="line">time.sleep(2)</span><br><span class="line"></span><br><span class="line">while(True):</span><br><span class="line">   for i in range(0,360,10):</span><br><span class="line">       p.ChangeDutyCycle(12.5-5*i/360)</span><br><span class="line">       time.sleep(1)</span><br><span class="line">   for i in  range(0,360,10):</span><br><span class="line">        p.ChangeCutyCycle(7.5-5*i/360)</span><br><span class="line">        time.sleep(1)</span><br></pre></td></tr></table></figure>
-<h3 id="但是要注意这里代码对应的舵机是360度舵机，如果测试180度舵机，试试下面这段代码，写的更直接粗暴简单："><a href="#但是要注意这里代码对应的舵机是360度舵机，如果测试180度舵机，试试下面这段代码，写的更直接粗暴简单：" class="headerlink" title="但是要注意这里代码对应的舵机是360度舵机，如果测试180度舵机，试试下面这段代码，写的更直接粗暴简单："></a>但是要注意这里代码对应的舵机是360度舵机，如果测试180度舵机，试试下面这段代码，写的更直接粗暴简单：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import RPi.GPIO as GPIO</span><br><span class="line">import time</span><br><span class="line">import signal</span><br><span class="line">import atexit</span><br><span class="line"></span><br><span class="line">atexit.register(GPIO.cleanup)</span><br><span class="line"></span><br><span class="line">servopin1=23</span><br><span class="line">servopin2=24</span><br><span class="line">GPIO.setmode(GPIO.BCM)</span><br><span class="line">GPIO.setup(servopin1,GPIO.OUT,initial=False)</span><br><span class="line">GPIO.setup(servopin2,GPIO.OUT,initial=False)</span><br><span class="line">p1=GPIO.PWM(servopin1,50)</span><br><span class="line">p2=GPIO.PWM(servopin2,50)</span><br><span class="line">p1.start(7.5)</span><br><span class="line">time.sleep(1)</span><br><span class="line"></span><br><span class="line">#while(True):</span><br><span class="line">#   for i in range(0,90,15):</span><br><span class="line">#       p1.ChangeDutyCycle(12.5-5*i/90)</span><br><span class="line">#       time.sleep(1)</span><br><span class="line">#   for i in  range(0,90,15):</span><br><span class="line">#       p2.ChangeCutyCycle(7.5-5*i/90)</span><br><span class="line">#       time.sleep(1)</span><br><span class="line">p1.ChangeDutyCycle(6.5)</span><br><span class="line">time.sleep(1)</span><br><span class="line">p1.ChangeDutyCycle(2.5)</span><br><span class="line">time.sleep(1)</span><br><span class="line">p1.ChangeDutyCycle(11.5)</span><br><span class="line">time.sleep(1)</span><br><span class="line"></span><br><span class="line">p2.start(7.5)</span><br><span class="line">time.sleep(1)</span><br><span class="line">p2.ChangeDutyCycle(6.5)</span><br><span class="line">time.sleep(1)</span><br><span class="line">p2.ChangeDutyCycle(2.5)</span><br><span class="line">time.sleep(1)</span><br><span class="line">p2.ChangeDutyCycle(11.5)</span><br><span class="line">time.sleep(1)</span><br></pre></td></tr></table></figure>
-<h3 id="在学习中我还是不太明白为何初始电位在7-5，逻辑倒是简单粗暴，实际的PWM值会根据你买的电机有多不靠谱而产生浮动，调整一下就好。"><a href="#在学习中我还是不太明白为何初始电位在7-5，逻辑倒是简单粗暴，实际的PWM值会根据你买的电机有多不靠谱而产生浮动，调整一下就好。" class="headerlink" title="在学习中我还是不太明白为何初始电位在7.5，逻辑倒是简单粗暴，实际的PWM值会根据你买的电机有多不靠谱而产生浮动，调整一下就好。"></a>在学习中我还是不太明白为何初始电位在7.5，逻辑倒是简单粗暴，实际的PWM值会根据你买的电机有多不靠谱而产生浮动，调整一下就好。</h3><p>而且我感觉每次把电机转到最大角度，再拉回来，是不是就是业内统一的初始化方式？ brute force initialization?</p>
-<p>附送树莓派1GPIO对照表，如果你也在学这些，请选择没有占用的接口测试舵机。否则舵机会出现迷之抽搐。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/</span><br><span class="line">#             define from  wiringPi.h            </span><br><span class="line">#                 3.3V | | 5V            </span><br><span class="line">#                8/SDA | | 5V            </span><br><span class="line">#                9/SCL | | GND            </span><br><span class="line">#                    7 | | 14/TX         </span><br><span class="line">#                  GND | | 15/RX         </span><br><span class="line">#                    0 | | 18             </span><br><span class="line">#                    2 | | GND            </span><br><span class="line">#                    3 | | 23             </span><br><span class="line">#                  VCC | | 24             </span><br><span class="line">#              MOSI/12 | | GND            </span><br><span class="line">#              MISO/13 | | 25             </span><br><span class="line">#               SCK/14 | | 8/CE0     </span><br><span class="line">#                  GND | | 9/CE19      </span><br><span class="line">#/</span><br></pre></td></tr></table></figure></p>
-<h3 id="舵机并不是重点，主要是通过舵机了解PWM的运作原理。另外值得一提的是树莓派对PWM的控制没有arduino精准，抖动好像是正常的，毕竟这是模拟PWM电路，如果真的手动攒小车的话还是需要一块专业的PWM电机驱动板来完成这个过程再反馈给上层树莓派。这样操作的话貌似会稳定很多。"><a href="#舵机并不是重点，主要是通过舵机了解PWM的运作原理。另外值得一提的是树莓派对PWM的控制没有arduino精准，抖动好像是正常的，毕竟这是模拟PWM电路，如果真的手动攒小车的话还是需要一块专业的PWM电机驱动板来完成这个过程再反馈给上层树莓派。这样操作的话貌似会稳定很多。" class="headerlink" title="舵机并不是重点，主要是通过舵机了解PWM的运作原理。另外值得一提的是树莓派对PWM的控制没有arduino精准，抖动好像是正常的，毕竟这是模拟PWM电路，如果真的手动攒小车的话还是需要一块专业的PWM电机驱动板来完成这个过程再反馈给上层树莓派。这样操作的话貌似会稳定很多。"></a>舵机并不是重点，主要是通过舵机了解PWM的运作原理。另外值得一提的是树莓派对PWM的控制没有arduino精准，抖动好像是正常的，毕竟这是模拟PWM电路，如果真的手动攒小车的话还是需要一块专业的PWM电机驱动板来完成这个过程再反馈给上层树莓派。这样操作的话貌似会稳定很多。</h3><p>哎，伟大旅程的第一步。明天再看看编码器是咋回事儿~</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1126,8 +1114,8 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -1138,7 +1126,7 @@
               <div class="site-state-item site-state-categories">
                 
                   <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">Kategorien</span>
+                  <span class="site-state-item-name">categories</span>
                 
               </div>
             
@@ -1149,7 +1137,7 @@
               <div class="site-state-item site-state-tags">
                 
                   <span class="site-state-item-count">17</span>
-                  <span class="site-state-item-name">Tags</span>
+                  <span class="site-state-item-name">tags</span>
                 
               </div>
             
@@ -1214,7 +1202,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
