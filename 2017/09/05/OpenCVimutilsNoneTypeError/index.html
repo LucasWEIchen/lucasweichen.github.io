@@ -82,9 +82,9 @@
 
             
           </div>
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;camlock/camlock2.py&quot;, line 76, in &lt;module&gt;</span><br><span class="line">    frame = imutils.resize(frame, width=640, height= 480)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/imutils/convenience.py&quot;, line 69, in resize</span><br><span class="line">    (h, w) = image.shape[:2]</span><br><span class="line">AttributeError: &apos;NoneType&apos; object has no attribute &apos;shape&apos;</span><br></pre></td></tr></table></figure>
+          <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;camlock/camlock2.py&quot;, line 76, in &lt;module&gt;</span><br><span class="line">    frame = imutils.resize(frame, width=640, height= 480)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/imutils/convenience.py&quot;, line 69, in resize</span><br><span class="line">    (h, w) = image.shape[:2]</span><br><span class="line">AttributeError: &apos;NoneType&apos; object has no attribute &apos;shape&apos;</span><br></pre></td></tr></table></figure>
 <p>早上突然出现了这个错误。网上搜了很多都说是视频的源路径出错导致传给了imutils空的路径。可是测试树莓派摄像头时却一切正常。<br>突然想起昨晚装的 v4l-2 驱动好像没加载。测试之后果然修复了NoneTypeError.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe bcm2835-v4l2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo modprobe bcm2835-v4l2</span><br></pre></td></tr></table></figure>
 <p>It could be the path problem, but in my case it is the v4l2 thing that makes the trouble.</p>
 
         </section>

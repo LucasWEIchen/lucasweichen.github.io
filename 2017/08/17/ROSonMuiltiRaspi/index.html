@@ -89,16 +89,16 @@
 <li><p>安装过程很久，makefile随随便便就是五六个小时。请准备好电影零食。</p>
 </li>
 <li><p>如果要连接Arduino，你会发现安装之后的indigo不带ROS的 rosserial package。这需要去单独下载。应为这个包还没有被包含在源服务器上，只能去git上面单独下载。 尽量在第一次make之前就把需要手动安装的package都下载到src文件夹下，这样可以省去你后面反复make的烦恼。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/ros_catkin_ws/src</span><br><span class="line">$ git clone https:// github.com/ros-drivers/rosserial</span><br><span class="line">#下面这两句会重新make一遍，又要去准备电影和零食。</span><br><span class="line">$ cd ~/ros_catkin_ws</span><br><span class="line">$ catkin_make</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cd ~/ros_catkin_ws/src</span><br><span class="line">$ git clone https:// github.com/ros-drivers/rosserial</span><br><span class="line">#下面这两句会重新make一遍，又要去准备电影和零食。</span><br><span class="line">$ cd ~/ros_catkin_ws</span><br><span class="line">$ catkin_make</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>除了 rosserial， 我还用到了一个叫做common_msgs的包。地址是：<a href="https://github.com/ros/common_msgs" target="_blank" rel="noopener">https://github.com/ros/common_msgs</a><br>安装原理与rosserial相同。</p>
 <ol>
 <li><p>arduino 在树莓派1上没有被识别成ttyUSB设备。它指向ttyACM0。如果需要用ROS监听请设置好设备端口。在ROS环境下就是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun rosserial_python serial_node.py /dev/ttyACM0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rosrun rosserial_python serial_node.py /dev/ttyACM0</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>当在局域网内使用多个ROS设备时，需要设置一个master来运行roscore. 请参考<a href="http://wiki.ros.org/ROS/Tutorials/MultipleMachines" target="_blank" rel="noopener">这个</a>文档来设置。具体代码我放在这里备忘一下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#在所有子设备上都要设置</span><br><span class="line">export ROS_MASTER_URI=http://192.168.32.101:11311</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#在所有子设备上都要设置</span><br><span class="line">export ROS_MASTER_URI=http://192.168.32.101:11311</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Everything else just follow <a href="http://wiki.ros.org/rosserial_arduino/Tutorials" target="_blank" rel="noopener">this</a>.</p>
 </li>
