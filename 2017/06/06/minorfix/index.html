@@ -1,745 +1,228 @@
 <!DOCTYPE html>
-
-
-
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Lucas&#39; memo in his Ph.D. career &amp; SLAM Robotics &amp; life">
+  <meta name="keywords" content="undefined">
   
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <link rel="icon" href="/images/favicon.ico">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Blog,Hexo," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="鹿爷的人生杂货铺" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成：1&amp;lt;div class=&amp;apos;desc&amp;apos;&amp;gt;&amp;lt;%=config.description %&amp;gt;&amp;lt;/div&amp;gt; 全文件如下12">
-<meta name="keywords" content="Blog,Hexo">
-<meta property="og:type" content="article">
-<meta property="og:title" content="hexo 使用 material-flow 主题时更正个人描述部分内容的显示错误问题">
-<meta property="og:url" content="https://lucasweichen.github.io/2017/06/06/minorfix/index.html">
-<meta property="og:site_name" content="鹿爷的人生杂货铺">
-<meta property="og:description" content="意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成：1&amp;lt;div class=&amp;apos;desc&amp;apos;&amp;gt;&amp;lt;%=config.description %&amp;gt;&amp;lt;/div&amp;gt; 全文件如下12">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-06-07T03:47:12.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo 使用 material-flow 主题时更正个人描述部分内容的显示错误问题">
-<meta name="twitter:description" content="意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成：1&amp;lt;div class=&amp;apos;desc&amp;apos;&amp;gt;&amp;lt;%=config.description %&amp;gt;&amp;lt;/div&amp;gt; 全文件如下12">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '5.1.3',
-    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://lucasweichen.github.io/2017/06/06/minorfix/"/>
-
-
-
-
-
+    
   <title>hexo 使用 material-flow 主题时更正个人描述部分内容的显示错误问题 | 鹿爷的人生杂货铺</title>
-  
-
-
-
-
-
-
-
-
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta custom-logo">
-    
-      <div class="site-meta-headline">
-        <a>
-          <img class="custom-logo-image" src="images/logo.jpg"
-               alt="鹿爷的人生杂货铺"/>
-        </a>
-      </div>
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">鹿爷的人生杂货铺</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
+<body>
+  <header>
+  <div class="header-container">
+    <a class='logo' href="/">
+      <span>鹿爷的人生杂货铺</span>
+    </a>
+    <ul class="right-header">
       
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
+        <li class="nav-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
         </li>
       
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
+        <li class="nav-item">
+          
+            <a href="/about" class="item-link">关于</a>
+          
         </li>
       
-
+        <li class="nav-item">
+          
+            <a href="/archives" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/tags" class="item-link">标签</a>
+          
+        </li>
       
     </ul>
-  
+  </div>
+</header>
 
-  
-</nav>
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
+  <main id='post'>
+  <div class="content">
+    <article>
+        <section class="content markdown-body">
+          <h1>hexo 使用 material-flow 主题时更正个人描述部分内容的显示错误问题</h1>
+          <div class='post-meta'>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2017年06月06日</time>
             
+              | <i class="fa fa-folder-open-o" aria-hidden="true"></i> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+  </div>
 
-  <div id="posts" class="posts-expand">
-    
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/06/06/minorfix/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucas WEI">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹿爷的人生杂货铺">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">hexo 使用 material-flow 主题时更正个人描述部分内容的显示错误问题</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-06T20:25:00+10:00">
-                2017-06-06
-              </time>
-            
 
             
-
             
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
+              | 
+                  <i class="fa fa-tags" aria-hidden="true"></i>
                 
-                
-              
-            </span>
-          
+               
+  <a href="/tags/#Blog" class='tag'>Blog</a>
 
-          
+  <a href="/tags/#Hexo" class='tag'>Hexo</a>
+
+
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/06/minorfix/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/06/minorfix/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="意外发现一个小BUG，使用Hexo-Material-Flow-主题的用户如果想要更改自己的用户简介请编辑主题文件夹中-themes-material-flow-layout-widget-about-ejs-中的第七行改成："><a href="#意外发现一个小BUG，使用Hexo-Material-Flow-主题的用户如果想要更改自己的用户简介请编辑主题文件夹中-themes-material-flow-layout-widget-about-ejs-中的第七行改成：" class="headerlink" title="意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成："></a>意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&apos;desc&apos;&gt;&lt;%=config.description %&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+          </div>
+          <h3 id="意外发现一个小BUG，使用Hexo-Material-Flow-主题的用户如果想要更改自己的用户简介请编辑主题文件夹中-themes-material-flow-layout-widget-about-ejs-中的第七行改成："><a href="#意外发现一个小BUG，使用Hexo-Material-Flow-主题的用户如果想要更改自己的用户简介请编辑主题文件夹中-themes-material-flow-layout-widget-about-ejs-中的第七行改成：" class="headerlink" title="意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成："></a>意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&apos;desc&apos;&gt;&lt;%=config.description %&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <p>全文件如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&apos;m_widget about&apos;&gt;</span><br><span class="line">&lt;% if(config.avatar) &#123; %&gt;</span><br><span class="line">&lt;img class=&apos;avatar waves-image&apos; src=&apos;&lt;%= url_for(config.avatar) %&gt;&apos; /&gt;</span><br><span class="line">&lt;%&#125; %&gt;</span><br><span class="line">&lt;div class=&apos;header&apos;&gt;&lt;%=config.author %&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&apos;content&apos;&gt;</span><br><span class="line">&lt;div class=&apos;desc&apos;&gt;&lt;%=config.description %&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure></p>
 <p>否则个人简介永远都是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tempora mutantur, nos et mutamur in illis ...</span><br></pre></td></tr></table></figure></p>
 <p>不知道我是不是领会错了，那位做主题的大神是不是意在强行推广什么时过境迁唯我独尊的金句~<br>但是改改也没啥不好哈。。。。</p>
 
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Blog/" rel="tag"># Blog</a>
-          
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/06/05/rem-pass/" rel="next" title="让git和HEXO记住你的用户名和密码，反正咱也写不出啥值钱的代码">
-                <i class="fa fa-chevron-left"></i> 让git和HEXO记住你的用户名和密码，反正咱也写不出啥值钱的代码
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/07/day1/" rel="prev" title="新的开始 day1">
-                新的开始 day1 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    </div>
-  
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/logo.jpg"
-                alt="Lucas WEI" />
-            
-              <p class="site-author-name" itemprop="name">Lucas WEI</p>
-              <p class="site-description motion-element" itemprop="description">Lucas' memo in his Ph.D. career & SLAM Robotics & life</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">16</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">categories</span>
-                
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">17</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="mailto:lucas.wei@monash.edu" target="_blank" title="E-Mail">
-                    
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-            
-          </div>
-
-          
-          
-
-          
-          
-
-          <span id="busuanzi_container_site_pv">
-本站总访问量<span id="busuanzi_value_site_pv"></span>次
-</span>
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#意外发现一个小BUG，使用Hexo-Material-Flow-主题的用户如果想要更改自己的用户简介请编辑主题文件夹中-themes-material-flow-layout-widget-about-ejs-中的第七行改成："><span class="nav-number">1.</span> <span class="nav-text">意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成：</span></a></li></ol></div>
-            
-
-          </div>
         </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Lucas WEI</span>
-
-  
-</div>
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
+    </article>
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
+        <!-- disqus 评论框 start -->
+        <div class="comment">
+            <div id="disqus_thread" class="disqus-thread">
+              <i>加载评论框需要翻墙</i>
+            </div>
+        </div>
+        <!-- disqus 评论框 end -->
     
-
+        
   </div>
+  <aside>
+    
+    <div class="toc-container">
+        <h1>目录</h1>
+        <div class="content">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#意外发现一个小BUG，使用Hexo-Material-Flow-主题的用户如果想要更改自己的用户简介请编辑主题文件夹中-themes-material-flow-layout-widget-about-ejs-中的第七行改成："><span class="toc-number">1.</span> <span class="toc-text">意外发现一个小BUG，使用Hexo Material Flow 主题的用户如果想要更改自己的用户简介请编辑主题文件夹中./themes/material-flow/layout/_widget/about.ejs 中的第七行改成：</span></a></li></ol>
+        </div>
+    </div>
+    
+  </aside>
+</main>
 
-  
-
+<!-- disqus 公共JS代码 -->
 <script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+  /* * * CONFIGURATION VARIABLES * * */
+  var disqus_shortname = "lucasgoei";
+  var disqus_identifier = "https://lucasweichen.github.io/2017/06/06/minorfix/";
+  var disqus_url = "https://lucasweichen.github.io/2017/06/06/minorfix/";
+
+  isAgent(getDisqus)
+
+  // determine user agent in China
+  function isAgent(cb) {
+    var url = '//graph.facebook.com/feed?callback=h';
+    var xhr = new XMLHttpRequest();
+    var called = false;
+    xhr.open('GET', url);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+      called = true;
+      cb(true);
+      }
+    };
+    xhr.send();
+    // timeout 1s, this facebook API is very fast.
+    setTimeout(function() {
+      if (!called) {
+      xhr.abort();
+      cb(false)
+      }
+    }, 1000);
+  }
+
+  function getDisqus(isAgent) {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; 
+    dsq.async = true
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq)
   }
 </script>
+<!-- disqus 公共JS代码 end -->
 
 
 
+  <footer>
+  <div class="copyright">
+    <div>
+      &copy; 2018 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a>&nbsp
+    </div>
+    <div>
+      Theme by <a href="https://github.com/lewis-geek/hexo-theme-Aath" target="_blank">Aath</a>
+    </div>
+  </div>
+</footer>
 
 
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/lib/in-view.min.js"></script>
+<script src="/lib/lodash.min.js"></script>
+<script>
+  var isDown = true
+  var oldY = 0
+  inView.offset(50)
 
-
-
-
+  document.body.addEventListener('touchstart', function(){});
   
+  window.addEventListener('scroll', _.throttle(e => {
+    var currentY = window.scrollY
+    if((oldY - currentY) < 0) {
+      isDown = true
+    } else {
+      isDown = false
+    }
+    oldY = currentY
+  }, 250))
 
+  $("article img").each(function() {
+      var strA = "<a data-fancybox='gallery' href='" + this.src + "'></a>";
+      $(this).wrapAll(strA);
+  });
 
+  $('.toc-link').each(function() {
+      var href = $(this).attr("href");
+      
+      inView(href).on('exit', () => {
+        if (isDown) {
+          handleActive(href)
+        }
+      })
 
+      inView(href).on('enter', () => {
+        if (!isDown) {
+          handleActive(href)
+        }
+      })
 
+      this.onclick = function(e) {
+        var pos = $(href).offset().top - 10;
+        $("html,body").animate({scrollTop: pos}, 300);
+        setTimeout(() => {
+          handleActive(href)
+        }, 350)
+        return false
+      }
+  })
 
+  function handleActive(href) {
+    document.querySelectorAll('.toc-link').forEach(elm => {
+      elm.classList.remove('active')
+    })
+    document.querySelector(".toc [href='"+ href +"']").classList.add('active')
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
 
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://https-lucasweichen-github-io-1.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://lucasweichen.github.io/2017/06/06/minorfix/';
-          this.page.identifier = '2017/06/06/minorfix/';
-          this.page.title = 'hexo 使用 material-flow 主题时更正个人描述部分内容的显示错误问题';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://https-lucasweichen-github-io-1.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

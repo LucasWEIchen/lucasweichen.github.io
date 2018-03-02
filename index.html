@@ -1,1260 +1,293 @@
 <!DOCTYPE html>
-
-
-
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Lucas&#39; memo in his Ph.D. career &amp; SLAM Robotics &amp; life">
+  <meta name="keywords" content="undefined">
   
-
-
-<html class="theme-next muse use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <link rel="icon" href="/images/favicon.ico">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="SLAM, Aquarium, Melbourne" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="鹿爷的人生杂货铺" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="Lucas&apos; memo in his Ph.D. career &amp; SLAM Robotics &amp; life">
-<meta property="og:type" content="website">
-<meta property="og:title" content="鹿爷的人生杂货铺">
-<meta property="og:url" content="https://lucasweichen.github.io/index.html">
-<meta property="og:site_name" content="鹿爷的人生杂货铺">
-<meta property="og:description" content="Lucas&apos; memo in his Ph.D. career &amp; SLAM Robotics &amp; life">
-<meta property="og:locale" content="zh-CN">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="鹿爷的人生杂货铺">
-<meta name="twitter:description" content="Lucas&apos; memo in his Ph.D. career &amp; SLAM Robotics &amp; life">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '5.1.3',
-    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://lucasweichen.github.io/"/>
-
-
-
-
-
+    
   <title>鹿爷的人生杂货铺</title>
-  
-
-
-
-
-
-
-
-
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta custom-logo">
-    
-      <div class="site-meta-headline">
-        <a>
-          <img class="custom-logo-image" src="images/logo.jpg"
-               alt="鹿爷的人生杂货铺"/>
-        </a>
-      </div>
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">鹿爷的人生杂货铺</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
+<body>
+  <header>
+  <div class="header-container">
+    <a class='logo' href="/">
+      <span>鹿爷的人生杂货铺</span>
+    </a>
+    <ul class="right-header">
       
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
+        <li class="nav-item">
+          
+            <a href="/" class="item-link active">首页</a>
+          
         </li>
       
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
+        <li class="nav-item">
+          
+            <a href="/about" class="item-link">关于</a>
+          
         </li>
       
-
+        <li class="nav-item">
+          
+            <a href="/archives" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/tags" class="item-link">标签</a>
+          
+        </li>
       
     </ul>
-  
-
-  
-</nav>
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2018/03/02/vavirium/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucas WEI">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹿爷的人生杂货铺">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/02/vavirium/" itemprop="url">vivarium2 雨林缸续</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-02T12:46:58+11:00">
-                2018-03-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Aquarium/" itemprop="url" rel="index">
-                    <span itemprop="name">Aquarium</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/02/vavirium/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/02/vavirium/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>开缸半年了，现在来更新一下发展。<br><img src="/images/IMG_20171017_085915.jpg" alt="开缸时的样子"></p>
-<p>#经过半年的生长，很多植物，尤其是藤曼类发展迅速。但是我还是拿不准喷淋的量与时间。喷淋时间太短的话，下部的moss苔藓没有足够的水分，而太多的话，底部的爬藤植物似乎会出现腐烂的问题，这个平衡还在掌握之中。缸里的兰花没有什么变化，只是稍微长大了一点。 底滤工作良好稳定，自动补水的球阀也不错。上部的灯组产生的热量有些大，我觉得可能两组灯也够了，用不着这么多。水下的鱼都很健康，但是我考虑把他们搬出来，换几只鳌虾虾进去。魔鬼鱼年事已高，放在里面整天睡觉，也不出来溜溜。</p>
-<p><img src="/images/IMG_20180112_172314.jpg" alt="现在"></p>
-<p><img src="/images/IMG_20180112_172326.jpg" alt="现在2"></p>
-<p><img src="/images/20180203_151804.jpg" alt="上部植物细节"></p>
-<p><img src="/images/20180203_151807.jpg" alt="照明植物细节"></p>
-<p><img src="/images/20180203_151822.jpg" alt="侧面细节"></p>
-<p><img src="/images/IMG_20180112_172443.jpg" alt="底部"></p>
-<p><img src="/images/20180203_151755.jpg" alt="底部沙石"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
+</header>
 
-
+  <main id='index'>
+  <div class="posts-list">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2018/02/23/GY-85cont/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucas WEI">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹿爷的人生杂货铺">
-    </span>
-
-    
-      <header class="post-header">
-
+      <section>
+        <a href="/2018/03/02/vavirium/">
+          <h3 class='post-head'>
+            vivarium2 雨林缸续
+          </h3>
+        </a>
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/23/GY-85cont/" itemprop="url">在ROS中使用树莓派读取GY-85 2 IMU read_GY-85_from_ROS_via_RarpberryPi 2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-content">
+          
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <p>开缸半年了，现在来更新一下发展。<br><img src="/images/IMG_20171017_085915.jpg" alt="开缸时的样子"></p>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-23T09:36:32+11:00">
-                2018-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
           
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/23/GY-85cont/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/23/GY-85cont/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
+        <div class='post-meta'>
+          <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018年03月02日</time>
           
-            <p>#上一篇讲了GY-85在ROS里面的读取，这里补上该PROJECT文件中的CMakelist.txt 和 package.xml 不一定完全正确，但是有编译需要的所以lib/ The pervious post is talking about the content of node c++ file. Here are the CMakelist.txt and package.xml file that related in the parent folder. These may not fully correct, but it give the catkin what needs for build.</p>
-<p>1.package.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;package format=&quot;2&quot;&gt;</span><br><span class="line">  &lt;name&gt;imu2core&lt;/name&gt;</span><br><span class="line">  &lt;version&gt;0.0.0&lt;/version&gt;</span><br><span class="line">  &lt;description&gt;The imu2core package&lt;/description&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- One maintainer tag required, multiple allowed, one person per tag --&gt;</span><br><span class="line">  &lt;!-- Example:  --&gt;</span><br><span class="line">  &lt;!-- &lt;maintainer email=&quot;jane.doe@example.com&quot;&gt;Jane Doe&lt;/maintainer&gt; --&gt;</span><br><span class="line">  &lt;maintainer email=&quot;rikirobot@todo.todo&quot;&gt;rikirobot&lt;/maintainer&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &lt;!-- One license tag required, multiple allowed, one license per tag --&gt;</span><br><span class="line">  &lt;!-- Commonly used license strings: --&gt;</span><br><span class="line">  &lt;!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 --&gt;</span><br><span class="line">  &lt;license&gt;BSD&lt;/license&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt;</span><br><span class="line">  &lt;build_depend&gt;tf&lt;/build_depend&gt;</span><br><span class="line">  &lt;build_depend&gt;roscpp&lt;/build_depend&gt;</span><br><span class="line">  &lt;build_depend&gt;rospy&lt;/build_depend&gt;</span><br><span class="line">  &lt;build_export_depend&gt;tf&lt;/build_export_depend&gt;</span><br><span class="line">  &lt;build_export_depend&gt;roscpp&lt;/build_export_depend&gt;</span><br><span class="line">  &lt;build_export_depend&gt;rospy&lt;/build_export_depend&gt;</span><br><span class="line">  &lt;exec_depend&gt;roscpp&lt;/exec_depend&gt;</span><br><span class="line">  &lt;exec_depend&gt;rospy&lt;/exec_depend&gt;</span><br><span class="line">  &lt;exec_depend&gt;tf&lt;/exec_depend&gt;</span><br><span class="line">  &lt;build_depend&gt;wiringPi&lt;/build_depend&gt;</span><br><span class="line">  &lt;build_export_depend&gt;wiringPi&lt;/build_export_depend&gt;</span><br><span class="line">  &lt;exec_depend&gt;wiringPi&lt;/exec_depend&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &lt;!-- The export tag contains other, unspecified, tags --&gt;</span><br><span class="line">  &lt;export&gt;</span><br><span class="line">    &lt;!-- Other tools can request additional information be placed here --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/export&gt;</span><br><span class="line">&lt;/package&gt;</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>CMakelist.txt<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 2.8.3)</span><br><span class="line">project(imu2core)</span><br><span class="line"></span><br><span class="line">## Find catkin and any catkin packages</span><br><span class="line">find_package(catkin REQUIRED COMPONENTS</span><br><span class="line">  roscpp</span><br><span class="line">  rosconsole</span><br><span class="line">  tf</span><br><span class="line">)</span><br><span class="line">catkin_package()</span><br><span class="line"></span><br><span class="line">include_directories(</span><br><span class="line">  $&#123;catkin_INCLUDE_DIRS&#125;</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line">FIND_LIBRARY(WIRINGPI_LIBRARY wiringPi /home/rikirobot/wiringPi)</span><br><span class="line"></span><br><span class="line">add_executable(state_publisher src/state_publisher.cpp)</span><br><span class="line">target_link_libraries(state_publisher $&#123;catkin_LIBRARIES&#125; $&#123;WIRINGPI_LIBRARY&#125; $&#123;wiringPi&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2018/02/21/read-GY-85-from-ROS-via-RarpberryPi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucas WEI">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹿爷的人生杂货铺">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/21/read-GY-85-from-ROS-via-RarpberryPi/" itemprop="url">在ROS中使用树莓派读取GY-85 IMU read_GY-85_from_ROS_via_RarpberryPi</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-21T01:27:36+11:00">
-                2018-02-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/21/read-GY-85-from-ROS-via-RarpberryPi/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/21/read-GY-85-from-ROS-via-RarpberryPi/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="本文阐述了通过树莓派使用GY-85作为ROS系统的IMU的配置方法"><a href="#本文阐述了通过树莓派使用GY-85作为ROS系统的IMU的配置方法" class="headerlink" title="本文阐述了通过树莓派使用GY-85作为ROS系统的IMU的配置方法"></a>本文阐述了通过树莓派使用GY-85作为ROS系统的IMU的配置方法</h1><h1 id="here-we-talk-about-how-to-setup-GY-85-as-the-IMU-for-ROS-via-RaspberryPi"><a href="#here-we-talk-about-how-to-setup-GY-85-as-the-IMU-for-ROS-via-RaspberryPi" class="headerlink" title="here we talk about how to setup GY-85 as the IMU for ROS via RaspberryPi"></a>here we talk about how to setup GY-85 as the IMU for ROS via RaspberryPi</h1><h1 id="Setup-GY-85"><a href="#Setup-GY-85" class="headerlink" title="Setup GY-85"></a>Setup GY-85</h1><p>GY-85支持I2C接口。所以第一步是将其连接到树莓派的I2C端口。<br>GY-85 supports i2c interface. connect the chip to raspberryPi follow the char below.</p>
-<p><img src="/images/rasp_GPIOs_gy85.png" alt="GY-85树莓派I2C链接示意图"></p>
-<p>在调用I2C前，请确保已经打开树莓派的I2C端口。这一步需要在树莓派raspi-config里面打开。打开后重启树莓派，安装wiringPi这个库用于I2C读取，然后通过下面的i2cdetect 来判断你的pi是使用i2c port 0还是1. 这一步在wiringPi的教程里有详细讲解。<br>before we read the i2c interface, firstly we need to open it in raspi-config in your raspberryPi<br>Once I2C port opens, we need to use i2cdetect to see whether your pi use I2C port 0 or 1. You need to install wiringPi and the follow its tutorial to find this out.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo i2cdetect -y 0</span><br><span class="line">or</span><br><span class="line">sudo i2cdetect -y 1</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/rasp_i2c3.png" alt="链接成功时I2C的数据格式"><br>看到如上图的输出时你的GY-85就已经工作了。<br>Once you see the data above, your GY-85 is online.</p>
-<h1 id="ROS"><a href="#ROS" class="headerlink" title="ROS"></a>ROS</h1><p>这一步讲解ROS的设置，我觉得如果条件允许尽量在台式机上跑roscore这个进程，所有东西都放在树莓派上会卡的很厉害。<br>The minimum requirements for running roscore and IMU is probably a RaspberryPi3. If you happen to try this on pi 1 or 2 then I suggest you set your roscore on a remote computer.</p>
-<p>ROS端读取GY-85的c++文件在下面给出。是用一份网上GY-85的CPP程序改进来的。格式类似于标准的ros publisher. 所有的参数在ROS的教程里面都有详细讲解。但是有一点不同的是这里的文件头上调用了wiringPi的库，这些都需要在CMakelist.txt 里面进行标注，否则会编译失败。<br>Following is a example cpp file for publishing GY-85 to ROS. the code is extended for a standard ROS sensor_msgs publisher. Keep in mind that we using wiringPi libs which must be listed in CMakelist.txt aswell.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include &quot;ros/ros.h&quot;</span><br><span class="line">#include &quot;sensor_msgs/Imu.h&quot;</span><br><span class="line">#include &lt;wiringPiI2C.h&gt;</span><br><span class="line">#include &lt;wiringPi.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;sstream&gt;</span><br><span class="line"></span><br><span class="line">#define GYRO 0x68 //  when AD0 is connected to GND ,gyro address is 0x68.</span><br><span class="line">//#define GYRO 0x69   when AD0 is connected to VCC ,gyro address is 0x69</span><br><span class="line">#define G_SMPLRT_DIV 0x15</span><br><span class="line">#define G_DLPF_FS 0x16</span><br><span class="line">#define G_INT_CFG 0x17</span><br><span class="line">#define G_PWR_MGM 0x3E</span><br><span class="line">#define G_TO_READ 8 // 2 bytes for each axis x, y, z</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#define ADXL345_REG_POWER_CTL 0x2D</span><br><span class="line">#define ADXL345_REG_DATA_FORMAT 0x31</span><br><span class="line">#define ADXL345_MG2G_MULTIPLIER 0.004</span><br><span class="line">#define SENSORS_GRAVITY_EARTH 9.806</span><br><span class="line"></span><br><span class="line">#define M_CFGR_A 0x00</span><br><span class="line">#define M_CFGR_B 0x01</span><br><span class="line">#define M_MODER 0x02</span><br><span class="line">#define PI 3.14</span><br><span class="line">#define declination_angle -0.5167</span><br><span class="line">using namespace std;</span><br><span class="line">int gyrofd;</span><br><span class="line">int accfd;</span><br><span class="line">int magfd;</span><br><span class="line">float m_scale = 1.0;</span><br><span class="line">int g_offx = 120;</span><br><span class="line">int g_offy = 20;</span><br><span class="line">int g_offz = 93;</span><br><span class="line"></span><br><span class="line">void magnetoSetScale(float gauss);</span><br><span class="line"></span><br><span class="line">void magnetoSetScale(float gauss)</span><br><span class="line">&#123;</span><br><span class="line">   unsigned char value = 0;</span><br><span class="line">    if(gauss == 0.88)</span><br><span class="line">    &#123;</span><br><span class="line">      value = 0x00;</span><br><span class="line">      m_scale = 0.73;</span><br><span class="line">   &#125;</span><br><span class="line">   else if(gauss == 1.3)</span><br><span class="line">   &#123;</span><br><span class="line">      value = 0x01;</span><br><span class="line">      m_scale = 0.92;</span><br><span class="line">   &#125;</span><br><span class="line">   else if(gauss == 1.9)</span><br><span class="line">   &#123;</span><br><span class="line">      value = 0x02;</span><br><span class="line">      m_scale = 1.22;</span><br><span class="line">   &#125;</span><br><span class="line">   else if(gauss == 2.5)</span><br><span class="line">   &#123;</span><br><span class="line">      value = 0x03;</span><br><span class="line">      m_scale = 1.52;</span><br><span class="line">   &#125;</span><br><span class="line">   else if(gauss == 4.0)</span><br><span class="line">   &#123;</span><br><span class="line">      value = 0x04;</span><br><span class="line">      m_scale = 2.27;</span><br><span class="line">   &#125;</span><br><span class="line">   else if(gauss == 4.7)</span><br><span class="line">   &#123;</span><br><span class="line">      value = 0x05;</span><br><span class="line">      m_scale = 2.56;</span><br><span class="line">   &#125;</span><br><span class="line">   else if(gauss == 5.6)</span><br><span class="line">   &#123;</span><br><span class="line">      value = 0x06;</span><br><span class="line">      m_scale = 3.03;</span><br><span class="line">   &#125;</span><br><span class="line">   else if(gauss == 8.1)</span><br><span class="line">   &#123;</span><br><span class="line">      value = 0x07;</span><br><span class="line">      m_scale = 4.35;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   value &lt;&lt;= 5;</span><br><span class="line">   wiringPiI2CWriteReg8(magfd, M_CFGR_B, value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool initGyro()&#123;</span><br><span class="line">        gyrofd = wiringPiI2CSetup (0x68);</span><br><span class="line">        if(gyrofd &lt; 0)</span><br><span class="line">                return 0;</span><br><span class="line">        wiringPiI2CWriteReg8(gyrofd, G_PWR_MGM, 0x00);</span><br><span class="line">        wiringPiI2CWriteReg8(gyrofd, G_SMPLRT_DIV, 0x07);</span><br><span class="line">        wiringPiI2CWriteReg8(gyrofd, G_DLPF_FS, 0x19);</span><br><span class="line">        //wiringPiI2CWriteReg8(gyrofd, G_INT_CFG, 0x00);</span><br><span class="line">        return 1;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">bool initMagnetometer()&#123;</span><br><span class="line">        magfd = wiringPiI2CSetup(0x1E);</span><br><span class="line">        if(magfd &lt; 0)</span><br><span class="line">                return 0;</span><br><span class="line">        magnetoSetScale(1.3);</span><br><span class="line">        wiringPiI2CWriteReg8(magfd, M_MODER, 0x00);</span><br><span class="line">        //wiringPiI2CWriteReg8(magfd, M_CFGR_A, 0x70);</span><br><span class="line">        //wiringPiI2CWriteReg8(magfd, M_CFGR_B, 0xA0);</span><br><span class="line"></span><br><span class="line">        return 1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">bool initAccelerometer()&#123;</span><br><span class="line">        accfd = wiringPiI2CSetup(0x53);</span><br><span class="line">        if(accfd &lt; 0)</span><br><span class="line">                return 0;</span><br><span class="line">        //3 ja 4 bitti 1, jotta -&gt; measureenable ja autosleep 0b1100</span><br><span class="line">        wiringPiI2CWriteReg8(accfd, ADXL345_REG_POWER_CTL, 0x0C);</span><br><span class="line">        //0x00 paikalle voi vaihtaa rangea, nyt 2G</span><br><span class="line">        wiringPiI2CWriteReg8(accfd, ADXL345_REG_DATA_FORMAT, ((wiringPiI2CReadReg8(accfd, ADXL345_REG_DATA_FORMAT) &amp; ~0x0F) | 0x00) | 0x08);</span><br><span class="line">        return 1;</span><br><span class="line">&#125;</span><br><span class="line">void readMagneto(int r[3])</span><br><span class="line">&#123;</span><br><span class="line">        //0 on x, 1 on y, 2 on z</span><br><span class="line">        r[0] = ((wiringPiI2CReadReg8(magfd, 0x03) &lt;&lt; 8)|  wiringPiI2CReadReg8(magfd, 0x04));</span><br><span class="line">        r[2] = ((wiringPiI2CReadReg8(magfd, 0x05) &lt;&lt; 8)|  wiringPiI2CReadReg8(magfd, 0x06));</span><br><span class="line">        r[1] = ((wiringPiI2CReadReg8(magfd, 0x07) &lt;&lt; 8)|  wiringPiI2CReadReg8(magfd, 0x08));</span><br><span class="line">        if(r[0] &amp; (1&lt;&lt;16-1))</span><br><span class="line">                r[0] = r[0] - (1&lt;&lt;16);</span><br><span class="line">        if(r[1] &amp; (1&lt;&lt;16-1))</span><br><span class="line">                r[1] = r[1] - (1&lt;&lt;16);</span><br><span class="line">        if(r[2] &amp; (1&lt;&lt;16-1))</span><br><span class="line">                r[2] = r[2] - (1&lt;&lt;16);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">void  readAccelerometer(double r[3])</span><br><span class="line">&#123;</span><br><span class="line">        int re[3];</span><br><span class="line">        //0 on x, 1 on y, 2 on z</span><br><span class="line">        //r[0] = wiringPiI2CReadReg16(accfd, 0x32)* ADXL345_MG2G_MULTIPLIER * SENSORS_GRAVITY_EARTH;</span><br><span class="line">        //r[1] = wiringPiI2CReadReg16(accfd, 0x34)* ADXL345_MG2G_MULTIPLIER * SENSORS_GRAVITY_EARTH;</span><br><span class="line">        //r[2] = wiringPiI2CReadReg16(accfd, 0x36)* ADXL345_MG2G_MULTIPLIER * SENSORS_GRAVITY_EARTH;</span><br><span class="line">        re[0] = wiringPiI2CReadReg8(accfd, 0x32) | (wiringPiI2CReadReg8(accfd, 0x33) &lt;&lt; 8);</span><br><span class="line">        if(re[0] &amp; (1&lt;&lt;16-1))</span><br><span class="line">                re[0] = re[0] - (1&lt;&lt;16);</span><br><span class="line">        re[1] = wiringPiI2CReadReg8(accfd, 0x34) | (wiringPiI2CReadReg8(accfd, 0x35) &lt;&lt; 8);</span><br><span class="line">        if(re[1] &amp; (1&lt;&lt;16-1))</span><br><span class="line">                re[1] = re[1] - (1&lt;&lt;16);</span><br><span class="line">        re[2] = wiringPiI2CReadReg8(accfd, 0x36) | (wiringPiI2CReadReg8(accfd, 0x37) &lt;&lt; 8);</span><br><span class="line">        if(re[2] &amp; (1&lt;&lt;16-1))</span><br><span class="line">                re[2] = r[2] - (1&lt;&lt;16);</span><br><span class="line"></span><br><span class="line">        r[0] = re[0] * ADXL345_MG2G_MULTIPLIER;</span><br><span class="line">        r[1] = re[1] * ADXL345_MG2G_MULTIPLIER;</span><br><span class="line">        r[2] = re[2] * ADXL345_MG2G_MULTIPLIER;</span><br><span class="line"></span><br><span class="line">        r[0] = r[0] * SENSORS_GRAVITY_EARTH;</span><br><span class="line">        r[1] = r[1] * SENSORS_GRAVITY_EARTH;</span><br><span class="line">        r[2] = r[2] * SENSORS_GRAVITY_EARTH;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">void  readGyro(double r[4])</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">        int ri[4] = &#123;0&#125;;</span><br><span class="line"></span><br><span class="line">        //0 on x, 1 on y, 2 on z, 3 on l�mp�tila</span><br><span class="line">        ri[0] = ((wiringPiI2CReadReg8(gyrofd, 0x1D) &lt;&lt; 8) |  wiringPiI2CReadReg8(gyrofd, 0x1E));</span><br><span class="line">        if(ri[0] &amp; (1&lt;&lt;16-1))</span><br><span class="line">                ri[0] = ri[0] - (1&lt;&lt;16);</span><br><span class="line">        ri[1] = ((wiringPiI2CReadReg8(gyrofd, 0x1F) &lt;&lt; 8) |  wiringPiI2CReadReg8(gyrofd, 0x20));</span><br><span class="line">                 if(ri[1] &amp; (1&lt;&lt;16-1))</span><br><span class="line">                ri[1] = ri[1] - (1&lt;&lt;16);</span><br><span class="line">        ri[2] = ((wiringPiI2CReadReg8(gyrofd, 0x21) &lt;&lt; 8) |  wiringPiI2CReadReg8(gyrofd, 0x22));</span><br><span class="line">        if(ri[2] &amp; (1&lt;&lt;16-1))</span><br><span class="line">                ri[2] = ri[2] - (1&lt;&lt;16);</span><br><span class="line">        ri[3] = ((wiringPiI2CReadReg8(gyrofd, 0x1B) &lt;&lt; 8 ) |  wiringPiI2CReadReg8(gyrofd, 0x1C));</span><br><span class="line">        if(ri[3] &amp; (1&lt;&lt;16-1))</span><br><span class="line">                ri[3] = ri[3] - (1&lt;&lt;16);</span><br><span class="line">        r[0] = (double)ri[0] / 14.375;</span><br><span class="line">        r[1] = (double)ri[1] / 14.375;</span><br><span class="line">        r[2] = (double)ri[2] / 14.375;</span><br><span class="line">        r[3] = ri[3];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">void initAll()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">        if(!initGyro())&#123;</span><br><span class="line">                printf(&quot;Gyron init Successfull,  gpio load i2c&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(!initAccelerometer())&#123;</span><br><span class="line">                printf(&quot;Accelerometerin init Successfull&quot;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(!initMagnetometer())&#123;</span><br><span class="line">              printf(&quot;Magnetometer init Successfull&quot;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">float magnetoGetHeading()</span><br><span class="line">&#123;</span><br><span class="line">        float heading = 0.0;</span><br><span class="line">        int d[3] = &#123;0&#125;;</span><br><span class="line">        readMagneto(d);</span><br><span class="line">        d[0] *= m_scale;</span><br><span class="line">        d[1] *= m_scale;</span><br><span class="line">        d[2] *= m_scale;</span><br><span class="line">        heading = atan2(d[1], d[0]);</span><br><span class="line">        //heading += declination_angle;</span><br><span class="line"></span><br><span class="line">        if(heading &lt; 0.0)</span><br><span class="line">        &#123;</span><br><span class="line">        heading += (2.0 * PI);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(heading &gt; (2.0 * PI))</span><br><span class="line">        &#123;</span><br><span class="line">        heading -= (2.0 * PI);</span><br><span class="line">        &#125;</span><br><span class="line">        heading *= (180.0 / PI);</span><br><span class="line"></span><br><span class="line">        return heading;</span><br><span class="line">&#125;</span><br><span class="line">int main(int argc, char **argv) &#123;</span><br><span class="line"></span><br><span class="line">  ros::init(argc, argv, &quot;Imu_Sender&quot;);</span><br><span class="line">  initAll();</span><br><span class="line">  ros::NodeHandle n;</span><br><span class="line">  ros::Publisher imu_pub = n.advertise&lt;sensor_msgs::Imu&gt;(&quot;imu_data&quot;, 1000);</span><br><span class="line">  ros::Rate loop_rate(50);</span><br><span class="line">  //sleep(1); //give time for subscriber to handshake</span><br><span class="line"></span><br><span class="line">//  int count = 0;</span><br><span class="line">  while (ros::ok())</span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">    sensor_msgs::Imu imu_msg;</span><br><span class="line">    imu_msg.header.stamp = ros::Time::now();</span><br><span class="line">    imu_msg.header.frame_id = &quot;/base_link&quot;;</span><br><span class="line">    double gyro[4] = &#123;0&#125;;</span><br><span class="line">    double acc[3];</span><br><span class="line">    int compass[3] = &#123;0&#125;;</span><br><span class="line">    readMagneto(compass);</span><br><span class="line">    readGyro(gyro);</span><br><span class="line">    readAccelerometer(acc);</span><br><span class="line">    double temp = 35+(((double) (gyro[3] + 13200)) / 280);</span><br><span class="line">    //printf(&quot;gyro x: %f y: %f z: %f\n&quot;,gyro[0], gyro[1], gyro[2]);</span><br><span class="line">    //printf(&quot;acc x: %f y: %f z: %f\n&quot;,  acc[0], acc[1], acc[2]);</span><br><span class="line">    //printf(&quot;heading: %f x: %d, y: %d, z: %d, temp:  %f\n&quot;, magnetoGetHeading(), compass[0], compass[1], compass[2], temp);</span><br><span class="line">    //cout &lt;&lt; &quot;gyro: &quot; &lt;&lt; &quot;x: &quot; &lt;&lt;  gyro[0] &lt;&lt; &quot;, y: &quot; &lt;&lt; gyro[1] &lt;&lt; &quot;, z:  &quot; &lt;&lt; gyro[2] &lt;&lt; &quot; temp:&quot; &lt;&lt; temp &lt;&lt; endl;</span><br><span class="line">    //cout &lt;&lt; &quot;accelerometer: &quot; &lt;&lt; &quot;x: &quot; &lt;&lt;  acc[0] &lt;&lt; &quot;, y: &quot; &lt;&lt; acc[1] &lt;&lt; &quot;, z:  &quot;&lt;&lt; acc[2] &lt;&lt; endl;</span><br><span class="line">    //cout &lt;&lt; &quot;heading: &quot;  &lt;&lt; magnetoGetHeading() &lt;&lt; &quot;\n&quot;;</span><br><span class="line"></span><br><span class="line">    imu_msg.angular_velocity.x = gyro[0];</span><br><span class="line">    imu_msg.angular_velocity.z = gyro[1];</span><br><span class="line">    imu_msg.angular_velocity.y = gyro[2];</span><br><span class="line">    imu_msg.linear_acceleration.x = acc[0];</span><br><span class="line">    imu_msg.linear_acceleration.y = acc[1];</span><br><span class="line">    imu_msg.linear_acceleration.z = acc[2];</span><br><span class="line">    imu_msg.orientation.x = compass[0];</span><br><span class="line">    imu_msg.orientation.y = compass[1];</span><br><span class="line">    imu_msg.orientation.z = compass[2];</span><br><span class="line">    //imu_msg.orientation.w = compass[3];</span><br><span class="line">    //imu_msg.orientation_covariance = &#123;999999 , 0 , 0, 0, 9999999, 0, 0, 0, 999999&#125;;</span><br><span class="line">    //imu_msg.angular_velocity_covariance = &#123;9999, 0 , 0, 0 , 99999, 0, 0 , 0 , 0.02&#125;;</span><br><span class="line">    //imu_msg.linear_acceleration_covariance = &#123;0.2 , 0 , 0, 0 , 0.2, 0, 0 , 0 , 0.2&#125;;</span><br><span class="line"></span><br><span class="line">    ROS_INFO(&quot;IMU Publishing&quot;);</span><br><span class="line">    imu_pub.publish(imu_msg);</span><br><span class="line"></span><br><span class="line">    ros::spinOnce();</span><br><span class="line">    loop_rate.sleep();</span><br><span class="line">//    ++count;</span><br><span class="line">  &#125;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="rviz-imu-tools"><a href="#rviz-imu-tools" class="headerlink" title="rviz_imu_tools"></a>rviz_imu_tools</h1><p>最后你可能想在ROS的可视化工具rviz里面调试你的IMU，rviz有一个插件叫做rviz_imu_tools <a href="https://github.com/ccny-ros-pkg/imu_tools" target="_blank" rel="noopener">可以从github下载源码</a>，也可以用以下指令直接安装<br>Till now you probably want to visualize your IMU in rviz. This can be done using the rviz_imu_tools, a rviz plugin. it can be build from source however i found install using below command is easier. and save you from building errors.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ros-kinetic-imu-tools</span><br></pre></td></tr></table></figure>
-<p>最后一点，如果你在任何时候遇到了诸如‘Fixed Frame [map] does not exist ’ 这种错误的时候，回去静下心来看看ros教程里面frame 跟transform这两章的东西。除了广播和接受节点外，你还需要定义一个世界框架才能正常的在ROS里面解析你的IMU数据。<br>in the last, if you ever facing problems like “Fixed Frame [map] does not exist”, go back to ros tutor1 and looking for frames and transforms. the idea is that besides roscore, the publisher and the listener, you also need to broadcast a world frame and define its children frames.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2018/02/19/从windows编译HEXO/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucas WEI">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹿爷的人生杂货铺">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/19/从windows编译HEXO/" itemprop="url">从windows编译HEXO</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-19T00:17:13+11:00">
-                2018-02-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/19/从windows编译HEXO/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/19/从windows编译HEXO/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#剽窃大神的博客<br><a href="https://uolcano.github.io/blog/2016/04/10/%E5%9C%A8Windows%E4%B8%8B%EF%BC%8C%E5%88%A9%E7%94%A8hexo-GitHub-Pages%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%AB%99%E7%82%B9/" target="_blank" rel="noopener">地址如下</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lucasweichen.github.io/2017/10/22/vivarium1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lucas WEI">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹿爷的人生杂货铺">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/22/vivarium1/" itemprop="url">vivarium1 雨林缸</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-22T18:53:58+11:00">
-                2017-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Aquarium/" itemprop="url" rel="index">
-                    <span itemprop="name">Aquarium</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/22/vivarium1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/22/vivarium1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近都在忙着给家里的鱼缸搬家，旧的三重底滤不靠谱，经常漏水还泡了我的地板。<br>是时候做新缸了。<br>无奈墨尔本没有一个像样的玻璃切割工厂，做出的设计图没有人愿意接，只能找到一个做亚克力的切割工厂，凑合做吧~</p>
-<p>#1 附上雨林缸设计图一份<br>
-
-	<div class="row">
-    <embed src="/images/VASS1.PDF" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-<br>底部留有一个65mm直径的孔给底滤，还是内置三重底滤比较靠谱。以前的缸子是外置虹吸式三重底滤，各种不靠谱。<br>估计人家都不愿意接这活也是应为这个洞。</p>
-<p><img src="/images/IMG_20171017_085915.jpg" alt="全景"><br>整个缸子一米高，半米宽，400mm深，下方存水的部分30厘米高，上面有一个十厘米的挡板。中间留出60厘米的窗。现在窗还没有安装，以后上了植物再安装。 缸顶上开了一个二十厘米的长方形口子，走灯/风扇/喷淋的线路。</p>
-<p>底滤是个储物盒自己改的，里面塞了两层带孔亚力克板，最下面是泵，加热棒，紫外灯，上面是滤材，生化棉等等。<br><img src="/images/IMG_20171015_113104.jpg" alt="底滤1"><br><img src="/images/IMG_20171017_085839.jpg" alt="底滤2"><br><img src="/images/IMG_20171017_085844.jpg" alt="底滤3"></p>
-<p>65mm的洞直接拧上三重底滤套件，稍后给出购买传送门。<br><img src="/images/IMG_20171017_085849.jpg" alt="三重底滤套件"></p>
-<p>这样基本上过滤组件就完成了，现在加上灯饰。<br>主要分为底部的观赏灯和顶部的植物灯。植物灯是很早以前的老鱼缸用的淘宝LED灯，当时买了三组。可是LED似乎对于半米以上的水深无能为力，用三组也无济于事，干脆撤了封存。这次正好拿出来用。三组产生的热量还是很可观的，正好后期还得加风扇，回头顺便给它们也吹吹。<br><img src="/images/IMG_20171017_085908.jpg" alt="顶部植物LED1"><br><img src="/images/IMG_20171017_085904.jpg" alt="顶部植物LED2"></p>
-<p>剩下的就是观赏照明LED的，EBAY上淘来的车用12V LED 灯条买了好几组，很便宜。自己做好电源和接头，还可以买个遥控器，也没几美金。专门放了两个在水位线之下，方便看看水下世界。<br><img src="/images/IMG_20171017_085854.jpg" alt="底部LED"></p>
-<p>经过一个礼拜的折腾，挑了几块沉木，试图营造出溶洞的效果。有点似像非像哈哈哈哈。沉木必然黄水，开灯以后也还好，看不出来。按照我的设计，水位线之上可以放一个兰花，之后上了背景板之后还可以再加几个空气凤梨和苔藓类。<br><img src="/images/IMG_20171022_202253.jpg" alt="沉木"></p>
-<p>things to do:<br>还有几样事情没做</p>
-<ol>
-<li>背景板</li>
-<li>喷淋</li>
-<li>给鱼搬家</li>
-<li>加入超声波加湿器</li>
-<li>顶部加风扇</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+            | <i class="fa fa-folder-open-o" aria-hidden="true"></i> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Aquarium/">Aquarium</a>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
 
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/logo.jpg"
-                alt="Lucas WEI" />
-            
-              <p class="site-author-name" itemprop="name">Lucas WEI</p>
-              <p class="site-description motion-element" itemprop="description">Lucas' memo in his Ph.D. career & SLAM Robotics & life</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">16</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">categories</span>
-                
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">17</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="mailto:lucas.wei@monash.edu" target="_blank" title="E-Mail">
-                    
-                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-            
-          </div>
 
           
           
+            <span class="seperator">|</span>
+             
+                <i class="fa fa-tags" aria-hidden="true"></i>
+              
+             
+  <a href="/tags/#Vivarium" class='tag'>Vivarium</a>
+
+  <a href="/tags/#雨林缸" class='tag'>雨林缸</a>
+
 
           
-          
-
-          <span id="busuanzi_container_site_pv">
-本站总访问量<span id="busuanzi_value_site_pv"></span>次
-</span>
-
         </div>
       </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
+    
+      <section>
+        <a href="/2018/02/23/GY-85cont/">
+          <h3 class='post-head'>
+            在ROS中使用树莓派读取GY-85 2 IMU read_GY-85_from_ROS_via_RarpberryPi 2
+          </h3>
+        </a>
         
+        <div class="post-content">
+          
+            
+              
+                <p>#上一篇讲了GY-85在ROS里面的读取，这里补上该PROJECT文件中的CMakelist.txt 和 package.xml 不一定完全正确，但是有编译需要的所以lib/ The pervious post is talking about the content of node c++ file. Here are the CMakelist.txt and package.xml file that related in the parent folder. These may not fully correct, but it give the catkin what needs for build.</p>
+              
+          
+        </div>
+        <div class='post-meta'>
+          <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018年02月23日</time>
+          
+          
+            <span class="seperator">|</span>
+             
+                <i class="fa fa-tags" aria-hidden="true"></i>
+              
+             
+  <a href="/tags/#ROS" class='tag'>ROS</a>
+
+  <a href="/tags/#IMU" class='tag'>IMU</a>
+
+  <a href="/tags/#GY-85" class='tag'>GY-85</a>
+
+
+          
+        </div>
+      </section>
+    
+      <section>
+        <a href="/2018/02/21/read-GY-85-from-ROS-via-RarpberryPi/">
+          <h3 class='post-head'>
+            在ROS中使用树莓派读取GY-85 IMU read_GY-85_from_ROS_via_RarpberryPi
+          </h3>
+        </a>
+        
+        <div class="post-content">
+          
+            
+              
+                <h1 id="本文阐述了通过树莓派使用GY-85作为ROS系统的IMU的配置方法"><a href="#本文阐述了通过树莓派使用GY-85作为ROS系统的IMU的配置方法" class="headerlink" title="本文阐述了通过树莓派使用GY-85作为ROS系统的IMU的配置方法"></a>本文阐述了通过树莓派使用GY-85作为ROS系统的IMU的配置方法</h1><h1 id="here-we-talk-about-how-to-setup-GY-85-as-the-IMU-for-ROS-via-RaspberryPi"><a href="#here-we-talk-about-how-to-setup-GY-85-as-the-IMU-for-ROS-via-RaspberryPi" class="headerlink" title="here we talk about how to setup GY-85 as the IMU for ROS via RaspberryPi"></a>here we talk about how to setup GY-85 as the IMU for ROS via RaspberryPi</h1><h1 id="Setup-GY-85"><a href="#Setup-GY-85" class="headerlink" title="Setup GY-85"></a>Setup GY-85</h1><p>GY-85支持I2C接口。所以第一步是将其连接到树莓派的I2C端口。<br>GY-85 supports i2c interface. connect the chip to raspberryPi follow the char below.</p>
+              
+          
+        </div>
+        <div class='post-meta'>
+          <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018年02月21日</time>
+          
+          
+            <span class="seperator">|</span>
+             
+                <i class="fa fa-tags" aria-hidden="true"></i>
+              
+             
+  <a href="/tags/#ROS" class='tag'>ROS</a>
+
+  <a href="/tags/#IMU" class='tag'>IMU</a>
+
+  <a href="/tags/#GY-85" class='tag'>GY-85</a>
+
+
+          
+        </div>
+      </section>
+    
+      <section>
+        <a href="/2018/02/19/从windows编译HEXO/">
+          <h3 class='post-head'>
+            从windows编译HEXO
+          </h3>
+        </a>
+        
+        <div class="post-content">
+          
+            
+              
+                <p>#剽窃大神的博客<br><a href="https://uolcano.github.io/blog/2016/04/10/%E5%9C%A8Windows%E4%B8%8B%EF%BC%8C%E5%88%A9%E7%94%A8hexo-GitHub-Pages%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%AB%99%E7%82%B9/" target="_blank" rel="noopener">地址如下</a></p>
+              
+          
+        </div>
+        <div class='post-meta'>
+          <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018年02月19日</time>
+          
+          
+        </div>
+      </section>
+    
+      <section>
+        <a href="/2017/10/22/vivarium1/">
+          <h3 class='post-head'>
+            vivarium1 雨林缸
+          </h3>
+        </a>
+        
+        <div class="post-content">
+          
+            
+              
+                <p>最近都在忙着给家里的鱼缸搬家，旧的三重底滤不靠谱，经常漏水还泡了我的地板。<br>是时候做新缸了。<br>无奈墨尔本没有一个像样的玻璃切割工厂，做出的设计图没有人愿意接，只能找到一个做亚克力的切割工厂，凑合做吧~</p>
+              
+          
+        </div>
+        <div class='post-meta'>
+          <i class="fa fa-calendar" aria-hidden="true"></i> <time>2017年10月22日</time>
+          
+            | <i class="fa fa-folder-open-o" aria-hidden="true"></i> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Aquarium/">Aquarium</a>
+  </div>
+
+
+
+          
+          
+            <span class="seperator">|</span>
+             
+                <i class="fa fa-tags" aria-hidden="true"></i>
+              
+             
+  <a href="/tags/#Vivarium" class='tag'>Vivarium</a>
+
+  <a href="/tags/#雨林缸" class='tag'>雨林缸</a>
+
+
+          
+        </div>
+      </section>
+    
+  </div>
+  <aside>
+    
+    <div class="search">
+      <div class="content">
+        <form action="//www.google.com/search" target="_blank" class="search-form">
+          <input type="text" name="q" maxlength="20" placeholder="搜索">
+          <input type="hidden" name='sitesearch' value="https://lucasweichen.github.io">
+        </form>
       </div>
-    </main>
+    </div>
+    
+    
+      <div class="avatar">
+        <img src="/images/logo.jpg" alt="avatar">
+          
+      </div>
+    
+    
+      <div class="categories">
+        <h1>
+          文章分类
+        </h1>
+        <div class="content">
+          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Aquarium/">Aquarium</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenCV/">OpenCV</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ROS/">ROS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SLAM/">SLAM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/assembly/">assembly</a></li></ul>
+        </div>
+      </div>
+    
+    
+  </aside>
+</main>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Lucas WEI</span>
-
-  
+  <div class="paging">
+  <div class="paging-container">
+    
+    <div></div>    
+    
+    
+    <div class='page-next'>
+      <a href="/page/2/">下一页</a>
+    </div>
+    
+  </div>
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <footer>
+  <div class="copyright">
+    <div>
+      &copy; 2018 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a>&nbsp
+    </div>
+    <div>
+      Theme by <a href="https://github.com/lewis-geek/hexo-theme-Aath" target="_blank">Aath</a>
+    </div>
   </div>
+</footer>
 
-  
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://https-lucasweichen-github-io-1.disqus.com/count.js" async></script>
-    
-
-    
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>
