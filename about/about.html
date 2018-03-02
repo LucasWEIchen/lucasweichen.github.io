@@ -10,7 +10,7 @@
     <link rel="icon" href="/images/favicon.ico">
   
     
-  <title>编码器续 | 鹿爷的人生杂货铺</title>
+  <title>鹿爷的人生杂货铺</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
@@ -56,34 +56,13 @@
   <div class="content">
     <article>
         <section class="content markdown-body">
-          <h1>编码器续</h1>
+          <h1>无标题</h1>
           <div class='post-meta'>
-            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2017年06月14日</time>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018年03月02日</time>
             
-              | <i class="fa fa-folder-open-o" aria-hidden="true"></i> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SLAM/">SLAM</a>
-  </div>
-
-
-
-            
-            
-              | 
-                  <i class="fa fa-tags" aria-hidden="true"></i>
-                
-               
-  <a href="/tags/#ENCODER" class='tag'>ENCODER</a>
-
-  <a href="/tags/#SLAM" class='tag'>SLAM</a>
-
-
             
           </div>
-          <p>昨天把编码器接在了模拟信号口上并且胡乱设置了一个1000的阈值去测试，也算是成功了。<br>今天接到数字信号上面用high和low值去学习编码器计数的操作。</p>
-<p>上代码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/* Read Quadrature Encoder</span><br><span class="line">  * Connect Encoder to Pins encoder0PinA, encoder0PinB, and +5V.</span><br><span class="line">  *</span><br><span class="line">  * Sketch by max wolf / www.meso.net</span><br><span class="line">  * v. 0.1 - very basic functions - mw 20061220</span><br><span class="line">  *</span><br><span class="line">  */  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> int val;</span><br><span class="line"> int encoder0PinA = 3;</span><br><span class="line"> int encoder0PinB = 4;</span><br><span class="line"> int encoder0Pos = 0;</span><br><span class="line"> int encoder0PinALast = LOW;</span><br><span class="line"> int n = LOW;</span><br><span class="line"></span><br><span class="line"> void setup() &#123;</span><br><span class="line">   pinMode (encoder0PinA,INPUT);  //channel A 插在DIGITAL 3</span><br><span class="line">   pinMode (encoder0PinB,INPUT);  //channel B 插在DIGITAL 4</span><br><span class="line">   Serial.begin (9600);           //debuging输出</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> void loop() &#123;</span><br><span class="line">   n = digitalRead(encoder0PinA); //先读取A电位</span><br><span class="line">   if ((encoder0PinALast == LOW) &amp;&amp; (n == HIGH)) &#123;  //如果A之前是低电位，现在是高电位</span><br><span class="line">     if (digitalRead(encoder0PinB) == LOW) &#123;        //那么如果B现在低点位</span><br><span class="line">       encoder0Pos--;                               //计数减，反转</span><br><span class="line">     &#125; else &#123;                                       //或者如果B现在是高电位</span><br><span class="line">       encoder0Pos++;                               //计数加，正转</span><br><span class="line">     &#125;</span><br><span class="line">     Serial.print (encoder0Pos);</span><br><span class="line">     Serial.print (&quot;/&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">   encoder0PinALast = n;                            //记录本周期A电位，用于下一周期比较</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>这段代码也没什么不好理解的，相比昨天的接线，只需要把encoder接到analog 0/1 的两根针移到digital 3/4上面就行。 逻辑就是记录A频道的电位，并和上一周期A频道的电位进行比较，如果有差别则说明已经发生位移。在证明已经位移的情况下再读取B频道的电位，得出位移的方向是正还是负。这个逻辑可以参考AB频道的脉冲图谱。<br><img src="/images/encoderchannel.jpg" alt="AB频道脉冲"></p>
+          <p>layout: about</p>
 
         </section>
     </article>
@@ -107,8 +86,8 @@
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES * * */
   var disqus_shortname = "lucasgoei";
-  var disqus_identifier = "https://lucasweichen.github.io/2017/06/14/encodermore/";
-  var disqus_url = "https://lucasweichen.github.io/2017/06/14/encodermore/";
+  var disqus_identifier = "https://lucasweichen.github.io/about/about.html";
+  var disqus_url = "https://lucasweichen.github.io/about/about.html";
 
   isAgent(getDisqus)
 
