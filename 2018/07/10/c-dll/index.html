@@ -10,7 +10,7 @@
     <link rel="icon" href="/images/favicon.ico">
   
     
-  <title>ROS Catkin_make errors summary | 鹿爷的人生杂货铺</title>
+  <title>c++ VisualStudio 使用 dll | 鹿爷的人生杂货铺</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
@@ -56,32 +56,32 @@
   <div class="content">
     <article>
         <section class="content markdown-body">
-          <h1>ROS Catkin_make errors summary</h1>
+          <h1>c++ VisualStudio 使用 dll</h1>
           <div class='post-meta'>
-            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018年03月04日</time>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018年07月10日</time>
+            
+              | <i class="fa fa-folder-open-o" aria-hidden="true"></i> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SLAM/">SLAM</a>
+  </div>
+
+
+
             
             
               | 
                   <i class="fa fa-tags" aria-hidden="true"></i>
                 
                
-  <a href="/tags/#ROS" class='tag'>ROS</a>
+  <a href="/tags/#C++" class='tag'>C++</a>
 
-  <a href="/tags/#SLAM" class='tag'>SLAM</a>
-
-  <a href="/tags/#CATKIN_MAKE" class='tag'>CATKIN_MAKE</a>
+  <a href="/tags/#DLL" class='tag'>DLL</a>
 
 
             
           </div>
-          <ol>
-<li><p>reinstall ros will give you a error saying apt-get couldn’t install ros-kinetic-simulator. This is most likely because you still got gazebo installed on you Ubuntu. uninstall it and try install ROS again.</p>
-</li>
-<li><p>catkin_make some times give your permission error. This can be addressed by use chmod -x <the file="" that="" give="" you="" error="">. Or oddly, it didn’t work for me. I solve this by using Ubuntu GUI and actually right click on that .cfg file and change the permission in the drop list. I still do not get it, why my cmooand line not working?</the></p>
-</li>
-<li><p>delete both devel and build folder in your workspace can sometimes help to solve problem. But, for me, it some times cause more problems than it fixed.</p>
-</li>
-</ol>
+          <p>花了好一会功夫研究C++报错 “The procedure entry point xxxx could not be located in the dynamic link library xxxx.dll”<br>在确认不是路径问题和编译器问题的情况下发现原来是DLL的版本不一样，新lib文件更新之后忘了更新dll文件。</p>
+<p>#真是感叹自己的愚蠢</p>
 
         </section>
     </article>
@@ -105,8 +105,8 @@
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES * * */
   var disqus_shortname = "lucasgoei";
-  var disqus_identifier = "https://lucasweichen.github.io/2018/03/04/debugreinstll/";
-  var disqus_url = "https://lucasweichen.github.io/2018/03/04/debugreinstll/";
+  var disqus_identifier = "https://lucasweichen.github.io/2018/07/10/c-dll/";
+  var disqus_url = "https://lucasweichen.github.io/2018/07/10/c-dll/";
 
   isAgent(getDisqus)
 
