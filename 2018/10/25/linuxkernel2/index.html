@@ -10,7 +10,7 @@
     <link rel="icon" href="/images/favicon.ico">
   
     
-  <title>linux kernel_module compiling shows MODPOST 0 modules | 鹿爷的人生杂货铺</title>
+  <title>more linux kernel compile | 鹿爷的人生杂货铺</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
@@ -56,9 +56,9 @@
   <div class="content">
     <article>
         <section class="content markdown-body">
-          <h1>linux kernel_module compiling shows MODPOST 0 modules</h1>
+          <h1>more linux kernel compile</h1>
           <div class='post-meta'>
-            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018年10月07日</time>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018年10月25日</time>
             
               | <i class="fa fa-folder-open-o" aria-hidden="true"></i> 
   <div class="article-category">
@@ -80,13 +80,16 @@
 
             
           </div>
-          <p>最近在考古，电子考古学，我独创的学科。主要从事翻新一些二十年前的Linux C项目。新的Kernel下一make就是一串的错，准带熟悉了一下linux kernel编程。遇到两个问题，这个粗略总结一下。</p>
-<p>#MODPOST 0 modules<br>Any posts shows playing around with the makefile with spaces and TABs will help. Problem will eventually goes away. But please also check the following:<br>1.compilation as ordinary user or root, at /usr/src, /home, /root<br>2.on ext3 or reiserfs filesystems<br>3.compilation of a couple of kernel versions between, and including, 2.6.24.2 (yes, that problem is that old :/ ) - 2.6.33<br>4.downloaded from kernel.org and that from slackware packages<br>5.with default slackware .config files, and with simply make menuconfig and save (without making any changes)<br>6.using some slackBuild from slackbuilds.net<br>7.different slackware versions (12.2, 13.0, and -current now)<br>8.windows-style “format c:”, i mean, dd if=/dev/zero of=/dev/sdaX, and reinstall of Slackware</p>
-<p>#No rule to make target “syscall_32.tbl”<br>The Reason<br>At last we had to look the output ourselves.<br>You can notice that M is getting no value. (See M= in the first output line of make.)</p>
-<p>That means M=$(PWD) in the Makefile is wrong. It would have worked if PWD had been defined in the shell beforehand. But this is not so, we need to replace it with something that returns the present working directory (PWD).</p>
-<p>The Solution<br>That can be done perfectly with $(shell pwd). So just replace M=$(PWD) with M=$(shell pwd) in the Makefile.</p>
-<p>Worked perfectly for me. Hope it saves some time for you.</p>
-<p>more kbuild check <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/kbuild/modules.txt" target="_blank" rel="noopener">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/kbuild/modules.txt</a></p>
+          <p>Okyyyy, I found These information on  <a href="https://www.tldp.org/LDP/lkmpg/2.4/html/x208.html" target="_blank" rel="noopener">https://www.tldp.org/LDP/lkmpg/2.4/html/x208.html</a>.</p>
+<p>#The problem is that these information seems a bit outdated. </p>
+<p>“Kernel modules need to be compiled with certain gcc options to make them work. In addition, they also need to be compiled with certain symbols defined. This is because the kernel header files need to behave differently, depending on whether we’re compiling a kernel module or an executable. You can define symbols using gcc’s -D option, or with the #define preprocessor command. We’ll cover what you need to do in order to compile kernel modules in this section.</p>
+<p>-c: A kernel module is not an independant executable, but an object file which will be linked into the kernel during runtime using insmod. As a result, modules should be compiled with the -c flag.</p>
+<p>-O2: The kernel makes extensive use of inline functions, so modules must be compiled with the optimization flag turned on. Without optimization, some of the assembler macros calls will be mistaken by the compiler for function calls. This will cause loading the module to fail, since insmod won’t find those functions in the kernel.</p>
+<p>-W -Wall: A programming mistake can take take your system down. You should always turn on compiler warnings, and this applies to all your compiling endeavors, not just module compilation.</p>
+<p>-isystem /lib/modules/<code>uname -r</code>/build/include: You must use the kernel headers of the kernel you’re compiling against. Using the default /usr/include/linux won’t work.</p>
+<p>-D__KERNEL__: Defining this symbol tells the header files that the code will be run in kernel mode, not as a user process.</p>
+<p>-DMODULE: This symbol tells the header files to give the appropriate definitions for a kernel module.</p>
+<p>We use gcc’s -isystem option instead of -I because it tells gcc to surpress some “unused variable” warnings that -W -Wall causes when you include module.h. By using -isystem under gcc-3.0, the kernel header files are treated specially, and the warnings are surpressed. If you instead use -I (or even -isystem under gcc 2.9x), the “unused variable” warnings will be printed. Just ignore them if they do.”</p>
 
         </section>
     </article>
@@ -110,8 +113,8 @@
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES * * */
   var disqus_shortname = "lucasgoei";
-  var disqus_identifier = "https://lucasweichen.github.io/2018/10/07/linuxKernel/";
-  var disqus_url = "https://lucasweichen.github.io/2018/10/07/linuxKernel/";
+  var disqus_identifier = "https://lucasweichen.github.io/2018/10/25/linuxkernel2/";
+  var disqus_url = "https://lucasweichen.github.io/2018/10/25/linuxkernel2/";
 
   isAgent(getDisqus)
 
