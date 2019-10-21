@@ -10,7 +10,7 @@
     <link rel="icon" href="/images/favicon.ico">
   
     
-  <title>ROS Catkin_make errors summary | 鹿爷的人生杂货铺</title>
+  <title>爆改Hector之当前位置 Alter Hector SLAM Current Pose | 鹿爷的人生杂货铺</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
@@ -56,9 +56,17 @@
   <div class="content">
     <article>
         <section class="content markdown-body">
-          <h1>ROS Catkin_make errors summary</h1>
+          <h1>爆改Hector之当前位置 Alter Hector SLAM Current Pose</h1>
           <div class='post-meta'>
-            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018年03月04日</time>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2019年10月21日</time>
+            
+              | <i class="fa fa-folder-open-o" aria-hidden="true"></i> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SLAM/">SLAM</a>
+  </div>
+
+
+
             
             
               | 
@@ -67,21 +75,18 @@
                
   <a href="/tags/#ROS" class='tag'>ROS</a>
 
-  <a href="/tags/#CATKIN_MAKE" class='tag'>CATKIN_MAKE</a>
+  <a href="/tags/#Raspberry Pi" class='tag'>Raspberry Pi</a>
 
-  <a href="/tags/#SLAM" class='tag'>SLAM</a>
+  <a href="/tags/#Arduino" class='tag'>Arduino</a>
+
+  <a href="/tags/#Hector SLAM" class='tag'>Hector SLAM</a>
 
 
             
           </div>
-          <ol>
-<li><p>reinstall ros will give you a error saying apt-get couldn’t install ros-kinetic-simulator. This is most likely because you still got gazebo installed on you Ubuntu. uninstall it and try install ROS again.</p>
-</li>
-<li><p>catkin_make some times give your permission error. This can be addressed by use chmod -x <the file="" that="" give="" you="" error="">. Or oddly, it didn’t work for me. I solve this by using Ubuntu GUI and actually right click on that .cfg file and change the permission in the drop list. I still do not get it, why my cmooand line not working?</the></p>
-</li>
-<li><p>delete both devel and build folder in your workspace can sometimes help to solve problem. But, for me, it some times cause more problems than it fixed.</p>
-</li>
-</ol>
+          <p>Current position of Hector SLAM is maintained under ./hector_slam/hector_mapping/include/hector_slam_lib/slam_main/HectorSlamProcessor.h:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Eigen::Vector3f lastMapUpdatePose;</span><br><span class="line">Eigen::Vector3f lastScanMatchPose;</span><br></pre></td></tr></table></figure>
+<p>Function ‘update’ takes a pervious pose on the map and update it by a new position ‘newPoseEstimateWorld’.</p>
 
         </section>
     </article>
@@ -105,8 +110,8 @@
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES * * */
   var disqus_shortname = "lucasgoei";
-  var disqus_identifier = "https://lucasweichen.github.io/2018/03/04/debugreinstll/";
-  var disqus_url = "https://lucasweichen.github.io/2018/03/04/debugreinstll/";
+  var disqus_identifier = "https://lucasweichen.github.io/2019/10/21/爆改Hector/";
+  var disqus_url = "https://lucasweichen.github.io/2019/10/21/爆改Hector/";
 
   isAgent(getDisqus)
 
